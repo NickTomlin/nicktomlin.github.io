@@ -11,5 +11,8 @@ layout: default
   <div class="post-content" itemprop="articleBody">
     {{ content }}
   </div>
-
 </article>
+
+{% if page.comments != false %}
+  {% include disqus.html %}
+{% endif %}
