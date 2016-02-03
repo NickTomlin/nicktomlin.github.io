@@ -3,7 +3,7 @@ layout: post
 title: "Let's Send an Html Email Using PHPmailer"
 date: 2012-08-31 16:25
 comments: true
-external-url: 
+external-url:
 published: true
 categories: [php,html email]
 ---
@@ -52,14 +52,14 @@ We could just use PHP&#8217;s built in mail() and write our own MIME headers for
 
 <p><a href="http://code.google.com/a/apache-extras.org/p/phpmailer/">PHPMailer</a> is an apache extra that takes a lot of the confusion out of sending emails. Just download it to your project directory, include it in your PHP file and follow the tutorial <a href="http://code.google.com/a/apache-extras.org/p/phpmailer/wiki/UsefulTutorial">here</a> or modify my script below:</p>
 
-```
-require_once(includes/phpmail.class) // or wherever you put phpmail.class 
- 
+~~~ php
+require_once(includes/phpmail.class) // or wherever you put phpmail.class
+
 body = file_get_contents('email/htmlemail.html'); // include our formatted email
 
 $mail->AltBody = "To view this message please use an HTML compatible email viewer, or visit http://mysite.com/emailcampaign"; // give folks who can't read HTML email something to read
 $mail->SetFrom($email,$name);
-$address = $email; 
+$address = $email;
 $mail->AddAddress($address, $name);
 $mail->Subject = "Subject";
 $mail->MsgHTML($body);
@@ -71,7 +71,7 @@ if(!$mail->Send()) {
 } else {
   echo 'Message sent!'; // for testing
 }
-```
+~~~
 
 <h2>The end.</h2>
 
