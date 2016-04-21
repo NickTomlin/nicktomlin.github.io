@@ -20,3 +20,8 @@ npm.load({}, function (er) {
 ~~~
 
 This is obviously a very simplistic use case, but hopefully it provides some food for thought. Let me know if you are able to build something interesting with it.
+
+Edit
+===
+
+In the comments, @bfredit noted that you can use the [`global-npm`](https://www.npmjs.com/package/global-npm) module to avoid bringing the hefty `npm` package locally.
