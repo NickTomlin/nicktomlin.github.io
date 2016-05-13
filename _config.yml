@@ -18,5 +18,7 @@ google_analytics_id: "UA-31147245-1"
 
 # Build settings
 markdown: kramdown
-
-
+highlighter: rouge
+kramdown:
+    input: GFM
+    syntax_highlighter: rouge
