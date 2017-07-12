@@ -115,7 +115,7 @@ That works, but it's not very readable. Luckily, more modern versions of Vim hav
 
 # Lambdas to the rescue
 
-If we, or our intended users, are using vim7+ or neovim, we can use the new lambda syntax to simplify things:
+If we, or our intended users, are using vim8+ or neovim, we can use the new lambda syntax to simplify things:
 
 ```viml
 function Exclaim(name)
