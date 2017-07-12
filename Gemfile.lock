@@ -195,6 +195,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ffi
   github-pages
   jekyll-compose
 
