@@ -77,7 +77,7 @@ Not so fast! VimL has other ideas; while certain built in commands (like `echo`)
 
 This is where our friend [`:call`](http://vimdoc.sourceforge.net/htmldoc/eval.html#:call). `:call` calls a function, with up to 20 arguments (whoooooo), and discards its return value.
 
-```
+```viml
 :call MySideEffectFunc('this wooooorks')
 ```
 
@@ -87,7 +87,7 @@ Call is the _the_ way of calling functions within your plugins, or invoking othe
 
 Now that that is sorted, let's explore another way we can use our functions: references. Let's take a common example, using [`map`](http://vimdoc.sourceforge.net/htmldoc/eval.html#map()) with a function we've previously defined. We can use Vim's `function` keyword to create a funcref (that is a reference to function *wink* *wink*) which allows us to pass it to `map`, `filter`, or another function.
 
-```
+```viml
 function Exclaim(idx, name)
   return a:name . "!"
 endfunction
