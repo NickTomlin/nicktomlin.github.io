@@ -3,7 +3,7 @@ layout: post
 title: VimL Functions
 ---
 
-I'm starting a slow descent into the madness that is VimL, and one of the things that confused me the most initially about function calls was how many different ways there are to call a function. This may be very obvious to some but It caused me enough head scratching that I'm going to record some thoughts here.
+I've started a slow descent into the madness that is VimL. One of the things that I've found to be initially confusing is how Vim deals with functions. This may be very obvious to some but It caused me enough head scratching to warrant recording some thoughts here.
 
 <details class="tldr" markdown="1">
   <summary>Cheatsheet</summary>
@@ -40,7 +40,7 @@ echo map([1, 2, 3], { _, val -> val * 2 })
 
 # Getting func-y
 
-Having one way to call a function is boring, and most languages have a few different ways to invoke a function you or someone you love has defined. Not to be outdone, VimL has some twists of its own related to functions.
+Having one way to call a function is boring: most languages have a few different ways to invoke a function you or someone you love has defined. Not to be outdone, VimL has some twists of its own related to functions.
 
 Let's create a very simple function:
 
@@ -66,16 +66,16 @@ echo Hello('bob')
 
 This makes a _lot_ of sense! We've always been told that VimL doesn't make much sense; it feels good to prove people wrong doesn't it?
 
-But, let's say we want the side effects of calling _another_ function (which happens to mutate a variable or make some change to a buffer). It'd make sense to do the same thing but just not assign it right?
+But, let's say we just want the side effects of a function and do not want to deal with whatever it returns. It'd make sense to do the same thing but just not assign it right?
 
 ```viml
 MySideEffectFunc('some side effecty argument')
 E492: Not an editor command: MySideEffectFunc()
 ```
 
-Not so fast! VimL has other ideas; while certain built in commands (like `echo`) can be invoked normal "functions" cannot simply be called without passing or assigning their value. This is because things like `echo Foo()` and `let x = Foo()` implicitly evaluate or call any expression they are handed (in this case, the expression being invoking the function `Foo`). Since `Foo()` isn't good enough, we need a way to tell VimL to actually call the function.
+Not so fast! VimL has other ideas; while certain built in commands (like `echo`) can be invoked, functions cannot simply be called without passing or assigning their value. This is because things like `echo Foo()` and `let x = Foo()` implicitly evaluate or call any expression they are handed (in this case, the expression being invoking the function `Foo`). Since `Foo()` isn't good enough, we need a way to tell VimL to actually call the function.
 
-This is where our friend [`:call`](http://vimdoc.sourceforge.net/htmldoc/eval.html#:call). `:call` calls a function, with up to 20 arguments (whoooooo), and discards its return value.
+This is where [`:call`](http://vimdoc.sourceforge.net/htmldoc/eval.html#:call) steps in. `:call` calls a function, with up to 20 arguments (because 19 just wasn't enough), and discards its return value.
 
 ```viml
 :call MySideEffectFunc('this wooooorks')
@@ -85,7 +85,7 @@ Call is the _the_ way of calling functions within your plugins, or invoking othe
 
 # Show me your references
 
-Now that that is sorted, let's explore another way we can use our functions: references. Let's take a common example, using [`map`](http://vimdoc.sourceforge.net/htmldoc/eval.html#map()) with a function we've previously defined. We can use Vim's `function` keyword to create a funcref (that is a reference to function *wink* *wink*) which allows us to pass it to `map`, `filter`, or another function.
+Let's explore another way we can use our functions: references. Let's take a common example, using [`map`](http://vimdoc.sourceforge.net/htmldoc/eval.html#map()) with a function we've previously defined. We can use Vim's `function` keyword to create a funcref (that is a reference to function *wink* *wink*) which allows us to pass it to `map`, `filter`, or another function.
 
 ```viml
 function Exclaim(idx, name)
@@ -128,7 +128,7 @@ echo exclaimed
 " ['Hey!', 'Howdy!', 'Hi!']
 ```
 
-And, we can remove our simple function entirely and perform our string modifications within the Lambda if we want:
+We can even remove our simple function entirely and perform our string modifications within the Lambda if we want:
 
 ```viml
 let greetings = ['Hey', 'Howdy', 'Hi']
