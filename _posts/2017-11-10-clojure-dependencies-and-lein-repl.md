@@ -28,6 +28,15 @@ The solution is to do the work the `ns` macro is doing for you, namely, to quote
 
 [Quoting without confusion](https://8thlight.com/blog/colin-jones/2012/05/22/quoting-without-confusion.html) is a good reference here if you (like me) get confused by quotes.
 
-Additionally, for easy `repl`ing, it's probably easier to do this with `use` (which will clobber your current namespace but is worth it for hacking) or to stick this all in a file and use the `load`/`in-ns` combo (more on that [here](https://www.beyondtechnicallycorrect.com/2013/04/14/loading-and-using-namespaces-in-the-clojure-repl/))
+Additionally, for easy `repl`ing, it's probably easier to do this with `use` (which will clobber your current namespace but is worth it for hacking) or to stick this all in a file and use the `load`/`in-ns` combo (more on that [here](https://www.beyondtechnicallycorrect.com/2013/04/14/loading-and-using-namespaces-in-the-clojure-repl/)):
+
+```clojure
+; e.g. for src/my_ns.clj
+; that has a ns of `my-ns`
+(load "my_ns.clj")
+(in-ns 'my-ns)
+; you can now access variables defined in that namespace
+(my-ns/my-func "argc")
+```
 
 Hopefully this helps shortcut someone else. Cheers!
