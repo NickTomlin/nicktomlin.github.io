@@ -33,7 +33,7 @@ Additionally, for easy `repl`ing, it's probably easier to do this with `use` (wh
 ```clojure
 ; e.g. for src/my_ns.clj
 ; that has a ns of `my-ns`
-(load "my_ns.clj")
+(load "my_ns")
 (in-ns 'my-ns)
 ; you can now access variables defined in that namespace
 (my-ns/my-func "argc")
