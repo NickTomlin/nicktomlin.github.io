@@ -9,7 +9,7 @@ After running `/usr/bin/time zsh -i -c exit` I found out that my load time for z
 
 After some frantic Googling, I found Benny C. Wong's excellent post on [speeding up oh my zsh](https://bennycwong.github.io/post/speeding-up-oh-my-zsh/) which pointed at NVM and RVM as likely culprits. I quickly removed NVM from my `.zshrc` and saw startup times go to 0.14 seconds!
 
-The only wrinkle there is that I know needed to manually load `nvm` when I wanted to use it, which was not super great for my JavaScript heavy workflow. That same friend had the idea of loading nvm when cd-ing into a directory and I took that and modified some existing `chpwd` [zsh hook](http://zsh.sourceforge.net/Doc/Release/Functions.html#Hook-Functions) to lazily load `nvm` and `nvm use` if I cd'ed into a directory with an `.nvmrc`:
+The only wrinkle was that I now needed to manually load `nvm` whenever I needed to use it, which was less than ideal for my JavaScript heavy workflow. That same friend had the idea of loading nvm when cd-ing into a directory and I took that idea and modified some existing `chpwd` [zsh hooks](http://zsh.sourceforge.net/Doc/Release/Functions.html#Hook-Functions) to lazily load `nvm` and `nvm use` if I cd'ed into a directory with an `.nvmrc`:
 
 ```zsh
 # ~/.zshrc
