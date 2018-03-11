@@ -10,7 +10,7 @@ Background
 
 I've been diving into Elixir and I've found to the language to be full of lovely surprises that have forced me to re-think the way I approach basic problems. One of those things I've been re-examining is the concept of regularly scheduled tasks. My first thought in doing anything on a regular basis is Cron or a job queuing framework like Resque or Delayed Job. Elixir, however, provides some great built in tools for [running scheduled tasks](https://stackoverflow.com/a/32097971) without the need for external libraries or toolchains.
 
-I've been looking to replace an internal job at work that currently runs on cron with an Elixir OTP application. Using Elixir's schedulers worked, but managing a large number of jobs quickly got unruly. That's where [quantum] steps in to provide cron-like syntax and management for the Elixir.
+I've been looking to replace an internal job at work that currently runs on cron with an Elixir OTP application. Using Elixir's schedulers worked, but managing a large number of jobs quickly got unruly. That's where [quantum] steps in to provide cron-like syntax and management for Elixir applications.
 
 OTP: Getting Started
 ---
@@ -247,7 +247,7 @@ The kind folks on Elixir Forum [helped me resolve](https://elixirforum.com/t/can
 Conclusion
 ---
 
-So far I've been extremely impressed with the tooling and ecosystem around Elixir. The erlang underpinnings can be a little complicated but there are plenty of resources available to hep and most things are pretty close to the holy grail of "it just works."
+So far I've been extremely impressed with the tooling and ecosystem around Elixir. The Erlang underpinnings can be a little complicated but there are plenty of resources available to help; most of the tools I've found come pretty close to the holy grail of "it just works."
 
 Hopefully this helps you along in your own journey!
 
