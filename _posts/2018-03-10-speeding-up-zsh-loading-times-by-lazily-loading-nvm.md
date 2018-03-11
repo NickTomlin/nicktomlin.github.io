@@ -14,20 +14,17 @@ The only wrinkle was that I now needed to manually load `nvm` whenever I needed 
 ```zsh
 # ~/.zshrc
 function load-nvm () {
-  if [[ $(uname -s) == "Darwin" ]]
-  then
+  if [[ $OSTYPE == "darwin"* ]]; then
     export NVM_DIR=~/.nvm
     [[ -s $(brew --prefix nvm)/nvm.sh ]] && source $(brew --prefix nvm)/nvm.sh
   else
     [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
   fi
 }
-# NVM
 
 load-nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
-    if [ -x "$(command -v nvm)" ]; then
-    else
+    if ! type nvm 2>/dev/null; then
       load-nvm
     fi
     nvm use
@@ -35,5 +32,7 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 ```
+
+Edit: I originally used `command -v` which doesn't seem to recognize `nvm` properly, hit tip to Sean for switching to `type`
 
 I now have a _much_ snappier shell that loads `nvm` when I cd into a node project. 🎉
