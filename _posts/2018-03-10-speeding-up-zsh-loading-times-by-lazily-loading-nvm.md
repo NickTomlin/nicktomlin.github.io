@@ -24,7 +24,7 @@ function load-nvm () {
 
 load-nvmrc() {
   if [[ -f .nvmrc && -r .nvmrc ]]; then
-    if ! type nvm 2>/dev/null; then
+    if ! type nvm >/dev/null; then
       load-nvm
     fi
     nvm use
