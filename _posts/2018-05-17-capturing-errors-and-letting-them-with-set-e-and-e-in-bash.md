@@ -3,7 +3,7 @@ layout: post
 title: Capturing errors and letting them free with set -e and set +e in bash
 ---
 
-TLDR: `set -e` to enable exiting the current shell if a command exists unsuccessfully and `set +e` to disable
+TLDR: `set -e` to make the current shell exit if a command run within it exists unsuccessfully and `set +e` to disable the behavior
 
 Whether you love or hate Bash, it's hard to deny the raw beauty of Bash scripting. Portable, surprisingly concise, and perfect for environments where you don't have (or want) the overhead of a more refined language, Bash can be a wonderful go-to when hopping between *nix environments. I've recently been using it to write some common docker `ENTRYPOINT`s for running a few services in development and ran into an issue where I wanted the behavior of `set -e` and _not_ `set -e` in the same script.
 
