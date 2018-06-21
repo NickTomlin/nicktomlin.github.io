@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Nick Tomlin: Full Stack Engineer</title>
-  <meta name="description" content="I'm Nick Tomlin, a full stack engineer in Chicago. I like JavaScript.">
+  <title>Hardcoded sub queries in Postgres</title>
+  <meta name="description" content="I recently ran into an issue where I needed to write an IN filter that consumed values from a sub query and hard-coded list.  While I could express this rela...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://nick-tomlin.com/">
+  <link rel="canonical" href="http://nick-tomlin.com/2016/05/22/hardcoded-subqueries-in-postgres/">
   <link rel="alternate" type="application/rss+xml" title="Nick Tomlin: Full Stack Engineer" href="http://nick-tomlin.com/feed.xml">
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -82,45 +82,66 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <section class="hero">
-    <h1 class="page-heading">Nick Tomlin: Full Stack Engineer</h1>
-  </section>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Hardcoded sub queries in Postgres</h1>
+    <p class="post-meta"><time datetime="2016-05-22T00:00:00+00:00" itemprop="datePublished">May 22, 2016</time></p>
+  </header>
 
-  <section class="posts">
-    <ul class="post-list">
-      
-        <li>
-          <span class="post-meta">May 17, 2018</span>
+  <div class="post-content" itemprop="articleBody">
+    <p>I recently ran into an issue where I needed to write an <code class="highlighter-rouge">IN</code> filter that consumed values from a sub query and hard-coded list.  While I could express this relatively elegantly using an ORM to run the subquery and append the results to an array of hardcoded strings, I was struggling with how to do so raw SQL query.</p>
 
-          <h4>
-            <a class="post-link" href="/2018/05/17/capturing-errors-and-letting-them-with-set-e-and-e-in-bash/">Capturing errors and letting them free with set -e and set +e in bash</a>
-          </h4>
-        </li>
-      
-        <li>
-          <span class="post-meta">Mar 10, 2018</span>
+<p>My first attempt was to use <code class="highlighter-rouge">WITH</code> and a simple CTE:</p>
 
-          <h4>
-            <a class="post-link" href="/2018/03/10/speeding-up-zsh-loading-times-by-lazily-loading-nvm/">Speeding up zsh loading times by lazily loading nvm</a>
-          </h4>
-        </li>
-      
-        <li>
-          <span class="post-meta">Feb 26, 2018</span>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">WITH</span> <span class="n">hardcoded_user_ids</span><span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="k">as</span> <span class="p">(</span>
+  <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">)</span>
 
-          <h4>
-            <a class="post-link" href="/2018/02/26/cron-in-elixir-with-quantum/">Cron in Elixir with Quantum</a>
-          </h4>
-        </li>
-      
-    </ul>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orders</span>
+<span class="k">WHERE</span> <span class="n">orders</span><span class="p">.</span><span class="n">user_id</span> <span class="k">IN</span> <span class="p">(</span>
+  <span class="k">SELECT</span> <span class="n">id</span> <span class="k">from</span> <span class="n">normal_users</span>
+  <span class="k">UNION</span> <span class="k">ALL</span>
+  <span class="k">SELECT</span> <span class="n">id</span> <span class="k">FROM</span> <span class="n">hardcoded_user_ids</span>
+<span class="p">);</span>
+</code></pre></div></div>
 
-    <h3><a href="/blog">All posts</a></h3>
-  </section>
+<p>This was fine, but the CTE felt a bit verbose and unnecessary for my purposes. After some experimentation, I realized that this is possible using <code class="highlighter-rouge">AS</code> and specifying the column name:</p>
 
-</div>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">orders</span>
+<span class="k">WHERE</span> <span class="n">orders</span><span class="p">.</span><span class="n">user_id</span> <span class="k">IN</span> <span class="p">(</span>
+  <span class="k">SELECT</span> <span class="n">id</span> <span class="k">FROM</span> <span class="n">normal_users</span>
+  <span class="k">UNION</span> <span class="k">ALL</span>
+  <span class="k">SELECT</span> <span class="n">id</span> <span class="k">from</span> <span class="p">(</span>
+    <span class="k">values</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+  <span class="p">)</span> <span class="k">as</span> <span class="n">hardcoded_user_ids</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>While the CTE route may actually be clearer in the long run, I like the formatting of the inline values list for simple one offs.</p>
+
+  </div>
+</article>
+
+
+  <div id="disqus_thread"></div>
+<script>
+  (function() {
+    var disqus_config = function () {
+      this.page.url = '/2016/05/22/hardcoded-subqueries-in-postgres/';
+      this.page.identifier = '/2016/05/22/hardcoded-subqueries-in-postgres';
+    }
+    var d = document, s = d.createElement('script');
+
+    s.src = '//nicktomlin.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
 
       </div>
     </div>

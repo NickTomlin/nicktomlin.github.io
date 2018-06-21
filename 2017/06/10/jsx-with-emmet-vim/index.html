@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Nick Tomlin: Full Stack Engineer</title>
-  <meta name="description" content="I'm Nick Tomlin, a full stack engineer in Chicago. I like JavaScript.">
+  <title>JSX with Emmet Vim</title>
+  <meta name="description" content="  Apparently I’m very bad about writing blog posts; I’m going to try and do more bite sized “tactical” updates like this and see how it goes">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://nick-tomlin.com/">
+  <link rel="canonical" href="http://nick-tomlin.com/2017/06/10/jsx-with-emmet-vim/">
   <link rel="alternate" type="application/rss+xml" title="Nick Tomlin: Full Stack Engineer" href="http://nick-tomlin.com/feed.xml">
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -82,45 +82,57 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <section class="hero">
-    <h1 class="page-heading">Nick Tomlin: Full Stack Engineer</h1>
-  </section>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">JSX with Emmet Vim</h1>
+    <p class="post-meta"><time datetime="2017-06-10T00:00:00+00:00" itemprop="datePublished">Jun 10, 2017</time></p>
+  </header>
 
-  <section class="posts">
-    <ul class="post-list">
-      
-        <li>
-          <span class="post-meta">May 17, 2018</span>
+  <div class="post-content" itemprop="articleBody">
+    <blockquote>
+  <p>Apparently I’m very bad about writing blog posts; I’m going to try and do more bite sized “tactical” updates like this and see how it goes</p>
+</blockquote>
 
-          <h4>
-            <a class="post-link" href="/2018/05/17/capturing-errors-and-letting-them-with-set-e-and-e-in-bash/">Capturing errors and letting them free with set -e and set +e in bash</a>
-          </h4>
-        </li>
-      
-        <li>
-          <span class="post-meta">Mar 10, 2018</span>
+<p>I’ve used the excellent <a href="https://github.com/mattn/emmet-vim">emmet.vim</a> for quite some time but had never gotten around to fixing some pesky annoyances when dealing with JSX: the default <code class="highlighter-rouge">class</code> won’t work with JSX and that double quoted attributes are pure evil. After perusing <a href="https://github.com/mattn/emmet-vim/issues/255">this emmet vim issue</a> (from 2015! I’m way behind the times!) and trying one of the many solutions thrown out in the thread, I found the following configuration for Emmet Vim suited my needs:</p>
 
-          <h4>
-            <a class="post-link" href="/2018/03/10/speeding-up-zsh-loading-times-by-lazily-loading-nvm/">Speeding up zsh loading times by lazily loading nvm</a>
-          </h4>
-        </li>
-      
-        <li>
-          <span class="post-meta">Feb 26, 2018</span>
+<div class="language-viml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">" .vimrc</span>
+<span class="k">let</span> <span class="nv">g:user_emmet_settings</span> <span class="p">=</span> <span class="p">{</span>
+<span class="se">\</span>  <span class="s1">'javascript.jsx'</span> <span class="p">:</span> <span class="p">{</span>
+<span class="se">\</span>      <span class="s1">'extends'</span><span class="p">:</span> <span class="s1">'jsx'</span><span class="p">,</span>
+<span class="se">\</span>      <span class="s1">'quote_char'</span><span class="p">:</span> <span class="s2">"'"</span><span class="p">,</span>
+<span class="se">\</span>  <span class="p">},</span>
+<span class="se">\</span><span class="p">}</span>
+</code></pre></div></div>
 
-          <h4>
-            <a class="post-link" href="/2018/02/26/cron-in-elixir-with-quantum/">Cron in Elixir with Quantum</a>
-          </h4>
-        </li>
-      
-    </ul>
+<p>I am now happily Vimming away:</p>
 
-    <h3><a href="/blog">All posts</a></h3>
-  </section>
+<script type="text/javascript" src="https://asciinema.org/a/124232.js" id="asciicast-124232" async=""></script>
 
-</div>
+<p>Please share any tricks/tips for productive emmeting in the comments. Cheers!</p>
+
+  </div>
+</article>
+
+
+  <div id="disqus_thread"></div>
+<script>
+  (function() {
+    var disqus_config = function () {
+      this.page.url = '/2017/06/10/jsx-with-emmet-vim/';
+      this.page.identifier = '/2017/06/10/jsx-with-emmet-vim';
+    }
+    var d = document, s = d.createElement('script');
+
+    s.src = '//nicktomlin.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
 
       </div>
     </div>
