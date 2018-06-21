@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Nick Tomlin: Full Stack Engineer</title>
-  <meta name="description" content="I'm Nick Tomlin, a full stack engineer in Chicago. I like JavaScript.">
+  <title>Issues loading dependencies in the Clojure repl</title>
+  <meta name="description" content="I’ve been dusting off my very dusty Clojure parens and recently ran into a head scratcher when attempting to mess around with enlive in a Clojure repl.">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://nick-tomlin.com/">
+  <link rel="canonical" href="http://nick-tomlin.com/2017/11/10/clojure-dependencies-and-lein-repl/">
   <link rel="alternate" type="application/rss+xml" title="Nick Tomlin: Full Stack Engineer" href="http://nick-tomlin.com/feed.xml">
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -82,45 +82,70 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <section class="hero">
-    <h1 class="page-heading">Nick Tomlin: Full Stack Engineer</h1>
-  </section>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Issues loading dependencies in the Clojure repl</h1>
+    <p class="post-meta"><time datetime="2017-11-10T00:00:00+00:00" itemprop="datePublished">Nov 10, 2017</time></p>
+  </header>
 
-  <section class="posts">
-    <ul class="post-list">
-      
-        <li>
-          <span class="post-meta">May 17, 2018</span>
+  <div class="post-content" itemprop="articleBody">
+    <p>I’ve been dusting off my <em>very dusty</em> Clojure parens and recently ran into a head scratcher when attempting to mess around with <a href="https://github.com/cgrand/enlive">enlive</a> in a Clojure repl.</p>
 
-          <h4>
-            <a class="post-link" href="/2018/05/17/capturing-errors-and-letting-them-with-set-e-and-e-in-bash/">Capturing errors and letting them free with set -e and set +e in bash</a>
-          </h4>
-        </li>
-      
-        <li>
-          <span class="post-meta">Mar 10, 2018</span>
+<p>When attempting to follow along tutorial I naively popped open my repl and attempted to require enlive like so:</p>
 
-          <h4>
-            <a class="post-link" href="/2018/03/10/speeding-up-zsh-loading-times-by-lazily-loading-nvm/">Speeding up zsh loading times by lazily loading nvm</a>
-          </h4>
-        </li>
-      
-        <li>
-          <span class="post-meta">Feb 26, 2018</span>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(require [net.cgrand.enlive-html :as html])
+</code></pre></div></div>
 
-          <h4>
-            <a class="post-link" href="/2018/02/26/cron-in-elixir-with-quantum/">Cron in Elixir with Quantum</a>
-          </h4>
-        </li>
-      
-    </ul>
+<p>And received the following lovely exception:</p>
 
-    <h3><a href="/blog">All posts</a></h3>
-  </section>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>CompilerException java.lang.ClassNotFoundException: net.cgrand.enlive-html
+</code></pre></div></div>
 
-</div>
+<p>Thanks to <a href="https://stackoverflow.com/a/9811346/1048479">this</a> informative stackoverflow post, I was reminded of the difference between <code class="highlighter-rouge">require</code> nested within the <code class="highlighter-rouge">ns</code> macro and <code class="highlighter-rouge">require</code> run inside of a repl.</p>
+
+<p>The solution is to do the work the <code class="highlighter-rouge">ns</code> macro is doing for you, namely, to quote the vector you are passing to <code class="highlighter-rouge">require</code>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(require '[net.cgrand.enlive-html :as html])
+(html/text (first (html/select (html/html-resource (java.net.URL. "https://clojure.org"))  [:.clj-header-message])))
+</code></pre></div></div>
+
+<p><a href="https://8thlight.com/blog/colin-jones/2012/05/22/quoting-without-confusion.html">Quoting without confusion</a> is a good reference here if you (like me) get confused by quotes.</p>
+
+<p>Additionally, for easy <code class="highlighter-rouge">repl</code>ing, it’s probably easier to do this with <code class="highlighter-rouge">use</code> (which will clobber your current namespace but is worth it for hacking) or to stick this all in a file and use the <code class="highlighter-rouge">load</code>/<code class="highlighter-rouge">in-ns</code> combo (more on that <a href="https://www.beyondtechnicallycorrect.com/2013/04/14/loading-and-using-namespaces-in-the-clojure-repl/">here</a>):</p>
+
+<div class="language-clojure highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">; e.g. for src/my_ns.clj</span><span class="w">
+</span><span class="c1">; that has a ns of `my-ns`</span><span class="w">
+</span><span class="p">(</span><span class="nb">load</span><span class="w"> </span><span class="s">"my_ns"</span><span class="p">)</span><span class="w">
+</span><span class="p">(</span><span class="nb">in-ns</span><span class="w"> </span><span class="ss">'my-ns</span><span class="p">)</span><span class="w">
+</span><span class="c1">; you can now access variables defined in that namespace</span><span class="w">
+</span><span class="p">(</span><span class="nf">my-ns/my-func</span><span class="w"> </span><span class="s">"argc"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Hopefully this helps shortcut someone else. Cheers!</p>
+
+  </div>
+</article>
+
+
+  <div id="disqus_thread"></div>
+<script>
+  (function() {
+    var disqus_config = function () {
+      this.page.url = '/2017/11/10/clojure-dependencies-and-lein-repl/';
+      this.page.identifier = '/2017/11/10/clojure-dependencies-and-lein-repl';
+    }
+    var d = document, s = d.createElement('script');
+
+    s.src = '//nicktomlin.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
 
       </div>
     </div>
