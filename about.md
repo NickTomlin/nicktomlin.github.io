@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-I am a full stack engineer at [Braintree](https://braintreepayments.com); I try to write poetry in my spare time.
+I am a full stack engineer who is passionate about product focused engineering. I try to write poetry in my spare time.
 
 ### You can find me on:
 
