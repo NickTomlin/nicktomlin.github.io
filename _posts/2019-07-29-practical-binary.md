@@ -104,7 +104,7 @@ Without the correct encoding, a file is just a stream of `0`s and `1s` with endl
 
 When we use a tool like `cat` or read a file in a programming language `JavaScript` or `Python` into a string, our computer uses a default encoding to interpret the bits contained within the file. On *nix machines, the `$LANG` variable contains the default system character set, which `cat`, `less`, and other tools will use (`en_US.UTF-8` in my case). These tools will use an encoding to map the bits from the file to a character in the character set. More on that now.
 
-A character set (or charset) is a mapping of numbers to a character (e.g. `64` to  `A`. My system charset of `en_US.UTF-8` uses the [Unicode](https://home.unicode.org/) character set.
+A character set (or charset) is a mapping of numbers to a character (e.g. `64` to  `A`). My system charset of `en_US.UTF-8` uses the [Unicode](https://home.unicode.org/) character set.
 
 While that mapping is important, it doesn't have anything to do with those bits. We'll need to use an encoding (in this case `UTF-8`, another industry standard) to interpret those bits as numbers that can be mapped to the Unicode charset.
 
