@@ -16,7 +16,7 @@ Early computers used a character set called [`ASCII`](https://en.wikipedia.org/w
 
 [Unicode][Unicode] attempts to solve this problem by providing one giant character set for _all_ languages and fields (e.g. mathematics, or emoji). It is the current industry standard, but there are still plenty of flavors of character sets in the wild for historical, human [reasons](https://xkcd.com/927/).
 
-Each character in Unicode is represented by a "Code Point", which is a number that can be used to represent that character, and retrieve it, from the Unicode character set. This number can be represented in 8 or 64 bits, depending on how large it is. As note earlier, ASCII is a subset of Unicode that takes up the first 256 (since it uses an extended ASCII set) code points.
+Each character in Unicode is represented by a "Code Point", which is a number that can be used to represent that character, and retrieve it, from the Unicode character set. This number can be represented in 8 or more bits, depending on how large it is. As note earlier, ASCII is a subset of Unicode that takes up the first 256 (since it uses an extended ASCII set) code points.
 
 See the "more information" section at the bottom for some additional resources if you are interested in knowing more. There's a lot more to be said on the subject.
 
