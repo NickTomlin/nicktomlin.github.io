@@ -85,7 +85,7 @@ Crack the (en)code
 
 `01101000 01101001` (or `68 69` in hex) could be `hi` or it could be something entirely different based on the encoding our program is using. Some encodings (like `gif` or `pdf`) include a hint to their contents in the first few bytes, but there is no requirement that files self identify.
 
-What's fascinating about this is that we generally rely on a suffix to files to designate how we believe they should be interpreted. The `.pdf` postfix is merely a hint (the file could be any jumble of binary, not necessarily one that makes sense to a something that reads PDFs). I remember "fixing" broken files in my college tech support days be adding back a missing `.pdf` extension, that someone had accidentally removed.
+What's fascinating about this is that we generally rely on a suffix to files to designate how we believe they should be interpreted. The `.pdf` postfix is merely a hint (the file could be any jumble of binary, not necessarily one that makes sense to a something that reads PDFs). I remember "fixing" broken files in my college tech support days be adding back a missing `.pdf` extension that someone had accidentally removed.
 
 ### It's all about the encoding
 
@@ -147,9 +147,9 @@ A program that is capable of working with [PDF encoding](https://www.adobe.com/c
 Where do bits come from?
 ---
 
-We've been working with data stored on a computer drive, but i'd like to make a quick note about the storage of binary data. Because of the simplicity of the format, humans have used numerous ingenious methods to story binary data, even before modern computers existed. These include [punch cards](https://en.wikipedia.org/wiki/Punched_card), to [tapes](https://en.wikipedia.org/wiki/Tape_drive), to [electrons](https://en.wikipedia.org/wiki/Flash_memory). While the mechanics of storage are beyond my expertise, each method is simply a collection of `0`s and `1s`. 
+We've been working with data stored on a computer drive, but i'd like to make a quick note about the storage of binary data. Because of the simplicity of the format, humans have used numerous ingenious methods to story binary data, even before modern computers existed. These include [punch cards](https://en.wikipedia.org/wiki/Punched_card), [tapes](https://en.wikipedia.org/wiki/Tape_drive), and [electrons](https://en.wikipedia.org/wiki/Flash_memory) to name a few. While the mechanics of most storage methods are beyond my expertise, each method is simply a collection of `0`s and `1s`. 
 
-The simplicity of that abstraction is one of the beauties of binary data. A program shouldn't have to care that the data comes from a tape drive, a piece of paper, or a [steampunk flash drive](https://www.amazon.com/Slavatech-Handmade-Pentode-Steampunk-Industrial/dp/B00NB0QYDI). 
+The simplicity of that abstraction is one of the beauties of binary data: a program doesn't have to care that the data comes from a tape drive, a piece of paper, or a [steampunk flash drive](https://www.amazon.com/Slavatech-Handmade-Pentode-Steampunk-Industrial/dp/B00NB0QYDI), it just needs to know how to handle a stream of data. 
 
 Conclusion
 ---
