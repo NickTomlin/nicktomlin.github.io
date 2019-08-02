@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Encoding Adventures
-date: 2019-07-29 14:54 -0700
+date: 2019-08-02 14:54 -0700
 ---
 
 I've [previously talked][0] about how files are stored as binary and briefly touched on how those bits are interpreted via an encoding. In this post I'd like to dig into that process a little further, specifically focusing on [Unicode][Unicode] files encoded in [`UTF-8`](https://en.wikipedia.org/wiki/UTF-8).
@@ -122,5 +122,5 @@ There is a _lot_ more to be said about Unicode, `UTF8`, and encoding in general.
 - An overview of how [Unicode text is rendered](http://behdad.org/text/) on *nix operating systems
 - [Wikipedia has several UTF8 encoding examples](https://en.wikipedia.org/wiki/UTF-8#Examples).
 
-[0][https://nick-tomlin.com/2019/07/29/practical-binary/]
-[Unicode][https://home.unicode.org/]
+[0]: https://nick-tomlin.com/2019/07/29/practical-binary/
+[Unicode]: https://home.unicode.org/
