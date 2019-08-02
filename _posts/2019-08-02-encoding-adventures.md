@@ -49,7 +49,7 @@ $ xxd emoji.txt
 
 00000000: f09f 9983 0a                             
 
-# get the 
+# grab our bits with -b
 $ xxd -b emoji.txt
 00000000: 11110000 10011111 10011001 10000011 00001010
 ```
