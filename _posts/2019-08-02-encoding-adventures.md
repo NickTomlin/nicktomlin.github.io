@@ -14,7 +14,7 @@ Background: a very brief introduction to Unicode.
 
 Early computers used a character set called [`ASCII`](https://en.wikipedia.org/wiki/ASCII), which used the numbers `0-127` to represent both readable (e.g. `A` and non-readable "carriage return") characters. This worked wonderfully in small, North American context, but was woefully inadequate in terms of meeting global linguistic needs. Various competing extensions to ASCII were created to handle characters from different languages, but this led to compatibility issues and confusion when exchanging text in different encodings.
 
-[Unicode][Unicode] attempts to solve this problem by providing one giant character set for _all_ languages and fields (e.g. mathematics, or emoji). It is the current industry standard (having said that, there are still plenty of flavors of character sets in the wild for historical reasons).
+[Unicode][Unicode] attempts to solve this problem by providing one giant character set for _all_ languages and fields (e.g. mathematics, or emoji). It is the current industry standard, but there are still plenty of flavors of character sets in the wild for historical, human [reasons](https://xkcd.com/927/).
 
 Each character in Unicode is represented by a "Code Point", which is a number that can be used to represent that character, and retrieve it, from the Unicode character set. This number can be represented in 8 or 64 bits, depending on how large it is. As note earlier, ASCII is a subset of Unicode that takes up the first 256 (since it uses an extended ASCII set) code points.
 
