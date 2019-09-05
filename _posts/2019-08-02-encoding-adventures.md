@@ -12,7 +12,7 @@ Background: a very brief introduction to Unicode.
 
 > Note: if you understand Unicode, or you just don't care, feel free to skip this section.
 
-Early computers used a character set called [`ASCII`](https://en.wikipedia.org/wiki/ASCII), which used the numbers `0-127` to represent both readable (e.g. `A` and non-readable "carriage return") characters. This worked wonderfully in small, North American context, but was woefully inadequate in terms of meeting global linguistic needs. Various competing extensions to ASCII were created to handle characters from different languages, but this led to compatibility issues and confusion when exchanging text in different encodings.
+Early computers used a character set called [`ASCII`](https://en.wikipedia.org/wiki/ASCII), which used the numbers `0-127` to represent both readable (e.g. `A`) and non-readable ("carriage return") characters. This worked wonderfully in small, North American context, but was woefully inadequate in terms of meeting global linguistic needs. Various competing extensions to ASCII were created to handle characters from different languages, but this led to compatibility issues and confusion when exchanging text in different encodings.
 
 [Unicode][Unicode] attempts to solve this problem by providing one giant character set for _all_ languages and fields (e.g. mathematics, or emoji). It is the current industry standard, but there are still plenty of flavors of character sets in the wild for historical, human [reasons](https://xkcd.com/927/).
 
@@ -38,10 +38,9 @@ $ xxd hello.txt
 00000000: 6869 0a                                  hi.
 ```
 
-Great! And now let's look that up in our handy [Unicode table](https://unicode-table.com).com/en/search/?q=i). We see that the [hex 68](https://unicode-table.com/en/0068/), which corresponds to `h` and [hex 69](https://unicode-table.com/en/0069/), which corresponds to `i`, is capped off by [0a](https://unicode-table.com/en/000A/) which is the [newline](https://en.wikipedia.org/wiki/Newline#Representation) character.
+Great! And now let's look that up in our handy [Unicode table](https://unicode-table.com.com/en/search/?q=i). We see that [hex 68](https://unicode-table.com/en/0068/), which corresponds to `h` and [hex 69](https://unicode-table.com/en/0069/), which corresponds to `i`, is capped off by [0a](https://unicode-table.com/en/000A/) which is the [newline](https://en.wikipedia.org/wiki/Newline#Representation) character.
 
 Now for something more interesting:
-
 
 ```
 $ echo "🙃" > emoji.txt
