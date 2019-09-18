@@ -1,6 +1,6 @@
 ---
 layout: post
-title: the power of reflection
+title: The power of reflection
 date: 2019-09-05 09:53 -0700
 ---
 
@@ -10,7 +10,7 @@ Getting things done relaxes and invigorates me. I've always preferred to spend m
 
 In this post, I would like to talk about how I use the process of stopping and recording my thoughts to transform seemingly empty moments into something meaningful.
 
-When there is no time
+Being productive as a new parent
 ---
 
 My wife and I recently welcomed our second child into our household. thanks to Netflix's generosity, I've been able to take several months off to get to know my new son and help make the transition to two kids easier for the family. this period has brought me a great deal of joy, but also disrupted the already tiny reserves of free time that I had to focus on other things.
@@ -47,7 +47,7 @@ I use my times of reflection to focus on the balance of family and professional 
 
 The specific questions are important, and it's fine if I cannot answer all of them, they are starting points.
 
-When to use it
+When to use reflection
 ---
 
 Schedules are lovely, but life as a parent rarely goes according to plan. I typically have a few hours of unscheduled time a week, and i'll either choose to use that to work on a specific project or sit down and journal if I have nothing that productively fit into that slot.
