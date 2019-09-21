@@ -4,7 +4,7 @@ title: The power of reflection
 date: 2019-09-05 09:53 -0700
 ---
 
-Your are eyes closed, you feel the warmth of the sun work into my face, shoulders, and arms, the only sound I hear is that of wave after wave of ocean water crashing against the sand near my feet. I don't know about you, but I've just described my worst nightmare. 
+Your are eyes closed, you feel the warmth of the sun work into your face, shoulders, and arms, the only sound is that of wave after wave of ocean water crashing against the sand near your feet. I don't know about you, but I've just described my worst nightmare. 
 
 Getting things done relaxes and invigorates me. I've always preferred to spend my free time being productive: burning down my reading list, working on a side-project, or cooking.  unfortunately, there's a hidden cost to this productive proclivity: I feel anxious when I'm not able to accomplish anything.
 
