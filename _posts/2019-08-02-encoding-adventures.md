@@ -26,14 +26,14 @@ Getting started
 
 Let's create a simple file with some text, similar to the one in the [binary post][0]:
 
-```
+```shell
 echo "hi" > hello.txt
 ```
 
 And now let's take a look at how a computer sees that data:
 
 
-```
+```shell
 $ xxd hello.txt
 00000000: 6869 0a                                  hi.
 ```
@@ -42,7 +42,7 @@ Great! And now let's look that up in our handy [Unicode table](https://unicode-t
 
 Now for something more interesting:
 
-```
+```shell
 $ echo "🙃" > emoji.txt
 $ xxd emoji.txt
 
