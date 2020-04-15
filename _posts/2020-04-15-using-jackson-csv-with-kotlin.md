@@ -1,0 +1,57 @@
+---
+layout: post
+title: Using Jackson CSV with kotlin
+date: 2020-04-15 10:38 -0700
+---
+
+I've been exploring [kotlin](https://kotlinlang.org/) for new projects on the JVM and it's been lovely so far. I've enjoyed the mostly seamless interop with the Java I know and love. I say mostly because there are a few hurdles to jump through.
+
+One I issue I recently encountered involved using [Jackson's CSV dataformat](https://github.com/FasterXML/jackson-dataformats-text/tree/master/csv) with Kotlin data classes. This was obvious when I found the solution and tracked it back to the documentation, but not so obvious when I first encountered it.
+
+```groovy
+// (assuming you've already included jackson itself)
+implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.10.3'
+implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.8.8'
+```
+
+```kotlin
+import com.fasterxml.jackson.dataformat.csv.CsvMapper
+import com.fasterxml.jackson.dataformat.csv.CsvSchema
+import com.fasterxml.jackson.module.kotlin.KotlinModule
+
+data class Customer(val id: Int)
+
+fun main () {
+    val mapper = CsvMapper()
+    val csv = "id\n1234"
+    val customers = mapper.readerFor(Customer::class.java)
+            .with(CsvSchema.emptySchema().withHeader())
+            .readValues<Customer>(csv)
+            .readAll()
+    println(customers)
+}
+```
+
+Results in the lovely exception:
+
+```
+com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `Line_2$Customer` (although at least one Creator exists): cannot deserialize from Object value (no delegate- or property-based Creator)
+```
+
+This is because even though we've included `jackson-module-kotlin`, we still need to register it with the CSVMapper in order to properly handle Kotlin classes. Luckily, registering is simple:
+
+```kotlin
+
+fun main () {
+    val mapper = CsvMapper().registerModule(KotlinModule())
+    // ...
+}
+```
+
+We can now properly deserialize our CSV:
+
+```
+[Customer(id=1234)]
+```
+
+Hopefully that saves you some time spent Googling and scratching your head!
