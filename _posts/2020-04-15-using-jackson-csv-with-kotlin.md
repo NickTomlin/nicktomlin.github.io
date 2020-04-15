@@ -8,6 +8,8 @@ I've been exploring [kotlin](https://kotlinlang.org/) for new projects on the JV
 
 One I issue I recently encountered involved using [Jackson's CSV dataformat](https://github.com/FasterXML/jackson-dataformats-text/tree/master/csv) with Kotlin data classes. This was obvious when I found the solution and tracked it back to the documentation, but not so obvious when I first encountered it.
 
+Running the following Kotlin program:
+
 ```kotlin
 import com.fasterxml.jackson.dataformat.csv.CsvMapper
 import com.fasterxml.jackson.dataformat.csv.CsvSchema
@@ -26,7 +28,7 @@ fun main () {
 }
 ```
 
-Results in the lovely exception:
+Results in this lovely exception:
 
 ```
 com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `Line_2$Customer` (although at least one Creator exists): cannot deserialize from Object value (no delegate- or property-based Creator)
@@ -39,6 +41,7 @@ This is because even though we've included `jackson-module-kotlin`, we still nee
 fun main () {
     val mapper = CsvMapper().registerModule(KotlinModule())
     // ...
+    println(customers)
 }
 ```
 
