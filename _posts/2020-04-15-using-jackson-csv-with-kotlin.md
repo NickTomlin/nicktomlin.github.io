@@ -8,12 +8,6 @@ I've been exploring [kotlin](https://kotlinlang.org/) for new projects on the JV
 
 One I issue I recently encountered involved using [Jackson's CSV dataformat](https://github.com/FasterXML/jackson-dataformats-text/tree/master/csv) with Kotlin data classes. This was obvious when I found the solution and tracked it back to the documentation, but not so obvious when I first encountered it.
 
-```groovy
-// (assuming you've already included jackson itself)
-implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.10.3'
-implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.8.8'
-```
-
 ```kotlin
 import com.fasterxml.jackson.dataformat.csv.CsvMapper
 import com.fasterxml.jackson.dataformat.csv.CsvSchema
