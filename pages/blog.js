@@ -11,7 +11,7 @@ export default function ({ posts }) {
           <li>
             <Date dateString={post.date} />
             <h2>
-              <Link className="post-link" href={`/posts/${post.permalink}`}>{post.title}</Link>
+              <Link className="post-link" href={post.href}>{post.title}</Link>
             </h2>
           </li>
         ))}
