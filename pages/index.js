@@ -14,7 +14,7 @@ export default function Index ({ posts }) {
         </section>
         <section className="posts">
           <ul className="post-list">
-            {posts.map(post => {
+            {posts.slice(0, 6).map((post) => {
               return (
                 <li key={post.id}>
                   <Date dateString={post.date} />

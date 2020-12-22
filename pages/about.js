@@ -1,11 +1,18 @@
 // TODO: MDX
-export default function About ({ html }) {
+import {PageLayout} from "../layouts/PageLayout"
+import remark from "remark"
+import html from "remark-html"
 
+export default function About ({ html }) {
+  return <PageLayout>
+    <div dangerouslySetInnerHTML={{ __html: html }} />
+  </PageLayout>
 }
 
-
-
-const markdown = ```
+/*
+* TODO: MDX
+* */
+const markdown = `
 I am a full stack engineer who is passionate about product focused engineering.
 
 ### Contributions
@@ -22,12 +29,15 @@ I am a full stack engineer who is passionate about product focused engineering.
 
 * [LinkedIn](https://www.linkedin.com/in/nick-tomlin-b0397636/)
 * [Twitter](https://twitter.com/itsnicktomlin)
-```
+`
+
 export async function getStaticProps () {
   const processed = await remark()
-    .use(markdown)
-    .process()
+    .use(html)
+    .process(markdown)
   return {
-    html: processed.toString()
+    props: {
+      html: processed.toString()
+    }
   }
 }

@@ -1,3 +1,5 @@
+import {DefaultLayout} from "./DefaultLayout"
+
 export function PageLayout ({ children }) {
-  return  <div>{children}</div>
+  return  <DefaultLayout>{children}</DefaultLayout>
 }

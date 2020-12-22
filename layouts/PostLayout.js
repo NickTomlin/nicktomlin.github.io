@@ -1,3 +1,7 @@
+import {DefaultLayout} from "./DefaultLayout"
+
 export function PostLayout ({ children  }) {
-  return <div>{children}</div>
+  return <DefaultLayout>
+    {children}
+  </DefaultLayout>
 }
