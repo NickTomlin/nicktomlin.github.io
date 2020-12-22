@@ -1,0 +1,20 @@
+{
+  "name": "nick-tomlin.com",
+  "description": "Next.js app for personal site",
+  "private": true,
+  "dependencies": {
+    "fast-glob": "^3.2.4",
+    "gray-matter": "^4.0.2",
+    "luxon": "^1.25.0",
+    "next": "^10.0.3",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "remark": "^13.0.0",
+    "remark-html": "^13.0.1",
+    "sass": "^1.30.0"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build && next export"
+  }
+}

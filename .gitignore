@@ -4,3 +4,5 @@ _site
 node_modules
 vendor
 _drafts
+.next
+out

@@ -1,9 +1,11 @@
----
-layout: page
-title: About
-permalink: /about/
----
+// TODO: MDX
+export default function About ({ html }) {
 
+}
+
+
+
+const markdown = ```
 I am a full stack engineer who is passionate about product focused engineering.
 
 ### Contributions
@@ -20,3 +22,12 @@ I am a full stack engineer who is passionate about product focused engineering.
 
 * [LinkedIn](https://www.linkedin.com/in/nick-tomlin-b0397636/)
 * [Twitter](https://twitter.com/itsnicktomlin)
+```
+export async function getStaticProps () {
+  const processed = await remark()
+    .use(markdown)
+    .process()
+  return {
+    html: processed.toString()
+  }
+}
