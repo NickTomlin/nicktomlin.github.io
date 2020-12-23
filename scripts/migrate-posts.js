@@ -28,8 +28,15 @@ function transform (path, { year, month, day }, name) {
     }
   })
   data.date = `${year}-${month}-${day}`
-  data.disqusId = `${year}/${month}/${day}/${name}`
-  return matter.stringify(content, data)
+  data.disqusId = `/${year}/${month}/${day}/${name}`
+
+  // prism has different syntax names
+  // than rouge/highlight
+  const replaced = content
+    .replace(/```viml/g, '```vim')
+    .replace(/```zsh/g, '```shell')
+
+  return matter.stringify(replaced, data)
 }
 
 function write ({name, contents, originalPath}) {
@@ -44,7 +51,7 @@ function writeRedirects (posts) {
     return `/${year}/${month}/${day}/${name}/\t${POST_URL}/${name}`
   }).join("\n")
   log(`\nWriting redirects`)
-  fs.writeFileSync(path.join(__dirname, '..', REDIRECTS_FILE_NAME), content)
+  fs.writeFileSync(path.join(__dirname, '../public', REDIRECTS_FILE_NAME), content)
 }
 
 const sanitizeName = (name) => name.replace(/(\.md|\.markdown)/, '').replace(dateRe, '')

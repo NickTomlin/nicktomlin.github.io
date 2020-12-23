@@ -2,7 +2,7 @@
 layout: post
 title: Issues loading dependencies in the Clojure repl
 date: '2017-11-10'
-disqusId: 2017/11/10/clojure-dependencies-and-lein-repl
+disqusId: /2017/11/10/clojure-dependencies-and-lein-repl
 ---
 
 I've been dusting off my _very dusty_ Clojure parens and recently ran into a head scratcher when attempting to mess around with [enlive](https://github.com/cgrand/enlive) in a Clojure repl.

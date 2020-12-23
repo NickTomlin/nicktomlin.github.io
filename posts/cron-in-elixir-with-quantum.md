@@ -2,7 +2,7 @@
 layout: post
 title: Cron in Elixir with Quantum
 date: '2018-02-26'
-disqusId: 2018/02/26/cron-in-elixir-with-quantum
+disqusId: /2018/02/26/cron-in-elixir-with-quantum
 ---
 
 This post showcases some examples of using [quantum] in vanilla OTP and Phoenix Elixir applications. The sample repositories are available at [nicktomlin/quantum_otp_example][1] and [nicktomlin/quantum_phoenix_example][2] respectively.

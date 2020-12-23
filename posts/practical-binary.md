@@ -2,7 +2,7 @@
 layout: post
 title: Practical Binary
 date: '2019-07-29'
-disqusId: 2019/07/29/practical-binary
+disqusId: /2019/07/29/practical-binary
 ---
 
 I consider myself an experienced programmer, but my real-world experience is mostly in the full stack realm. I've never written a line of assembly; only written a tiny bit of `c`, and bit-shifting makes my head hurt.
@@ -24,7 +24,7 @@ This post isn't about binary itself, but I'll briefly detail some terms before w
 - [`binary`](https://en.wikipedia.org/wiki/Binary_number) numbers are expressed in a base 2. If this is entirely foreign to you, I'd highly suggest reading the Wikipedia article, [`code`][0], and doing some simple decimal to binary conversions in your head.
     - Here is a simple example, for the binary number `1001`:
 
-        ```markup
+        ```
         1 0 0 1 => 000 00 9
         - - - -    --- -- -
         8 4 2 1 => 100 10 1

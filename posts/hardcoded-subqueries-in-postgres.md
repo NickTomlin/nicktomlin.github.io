@@ -4,7 +4,7 @@ title: Hardcoded sub queries in Postgres
 comments: true
 categories: 'sql, postgres'
 date: '2016-05-22'
-disqusId: 2016/05/22/hardcoded-subqueries-in-postgres
+disqusId: /2016/05/22/hardcoded-subqueries-in-postgres
 ---
 
 I recently ran into an issue where I needed to write an `IN` filter that consumed values from a sub query and hard-coded list.  While I could express this relatively elegantly using an ORM to run the subquery and append the results to an array of hardcoded strings, I was struggling with how to do so raw SQL query.

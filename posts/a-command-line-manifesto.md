@@ -5,7 +5,7 @@ date: '2012-08-10'
 comments: true
 external-url: null
 categories: Terminal
-disqusId: 2012/08/10/a-command-line-manifesto
+disqusId: /2012/08/10/a-command-line-manifesto
 ---
 <small>Note:
 I will be using "terminal" and "the command line" interchangeably. If there's better language to use, drop me a comment and I will change things around.

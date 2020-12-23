@@ -2,7 +2,7 @@
 layout: post
 title: Encoding Adventures
 date: '2019-08-02'
-disqusId: 2019/08/02/encoding-adventures
+disqusId: /2019/08/02/encoding-adventures
 ---
 
 I've [previously talked][0] about how files are stored as binary and briefly touched on how those bits are interpreted via an encoding. In this post I'd like to dig into that process a little further, specifically focusing on [Unicode][Unicode] files encoded in [`UTF-8`](https://en.wikipedia.org/wiki/UTF-8).
@@ -82,7 +82,7 @@ Bits are just 0s and 1s unless we know how to decode them. Fortunately, we know 
 
 The `UTF8` spec gives us an indication of how to process `UTF8` encoded bits. We will ignore the ending non-breaking space, leaving us with four bits which we can break into "signaling" portions (e.g. required by the `UTF8`) and "code bit" portions (that specify which Unicode character we are dealing with)
 
-```markup
+```
 "signaling" bits| code bits
 ----------------|---
 11110             000
