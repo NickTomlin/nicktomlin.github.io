@@ -191,16 +191,7 @@ pre {
 /**
  * Icons
  */
-.icon {
-
-    > svg {
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        vertical-align: middle;
-
-        path {
-            fill: $grey-color;
-        }
-    }
+.icon--username {
+    vertical-align: text-bottom;
+    margin-left: .25rem;
 }
