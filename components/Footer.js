@@ -1,4 +1,6 @@
 import site from "../site.config"
+import {GithubIcon} from "./icons/GithubIcon"
+import {TwitterIcon} from "./icons/TwitterIcon"
 
 export function Footer () {
   return (
@@ -16,12 +18,12 @@ export function Footer () {
             <ul className="social-media-list">
               {site.github_username &&
                 <li>
-                  Github
+                  <GithubIcon username={site.github_username} />
                 </li>
               }
 
               {site.twitter_username && <li>
-                Twitter
+                <TwitterIcon username={site.twitter_username} />
               </li>
               }
             </ul>
