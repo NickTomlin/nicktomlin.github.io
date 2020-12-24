@@ -9,14 +9,14 @@ export default function Index ({ posts }) {
   return (
     <DefaultLayout>
       <div className="home">
-        <section className="text-xl tracking-tighter leading-10">
-          <h1 className="page-heading">Nick Tomlin: Full Stack Engineer</h1>
+        <section>
+          <h1 className="text-4xl lead font-semibold tracking-wide">Nick Tomlin: Full Stack Engineer</h1>
         </section>
         <section className="posts">
           <PostList posts={posts.slice(0, 6)}/>
-          <h3>
+          <p className={"text-blue-500 text-md underline"}>
             <Link href={"/blog"}>All posts</Link>
-          </h3>
+          </p>
         </section>
       </div>
     </DefaultLayout>

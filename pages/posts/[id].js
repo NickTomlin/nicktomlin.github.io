@@ -8,28 +8,33 @@ import site from "../../site.config"
 export default function Post ({ postData }) {
   return (
     <PostLayout>
-      <Head>
-        <title>{postData.title}</title>
-        <meta name="description" key="description" content={postData.excerpt || site.description} />
-      </Head>
-      <article className="post" itemScope itemType="http://schema.org/BlogPosting">
-        <header className="post-header">
-          <h1 className="post-title" itemProp="name headline">{postData.title}</h1>
-          <p className="post-meta">
+      <article itemScope itemType="http://schema.org/BlogPosting">
+        <Head>
+          <title >{postData.title}</title>
+          <meta name="description" key="description" content={postData.excerpt || site.description} />
+        </Head>
+        <header className={"my-4"}>
+          <h1 className={"lead text-5xl mb-3"} itemProp="name headline">{postData.title}</h1>
+          <span>
             <Date dateString={postData.date} itemProp={"datePublished"}/>
-          </p>
+          </span>
         </header>
-        <div className="post-content" itemProp="articleBody" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <div className="post-content prose lg:prose-xl" itemProp="articleBody" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <footer>
+          {postData.comments !== false &&
+            <div className={"my-4"}>
+              <DiscussionEmbed
+                shortname={postData.id}
+                config={{
+                  locale: "en_US",
+                  identifier: postData.disqusId || postData.id,
+                  title: postData.title
+                }}
+              />
+            </div>
+          }
+        </footer>
       </article>
-      {postData.comments !== false &&
-        <DiscussionEmbed
-          shortname={postData.id}
-          config={{
-            identifier: postData.disqusId || postData.id,
-            title: postData.title
-          }}
-        />
-      }
     </PostLayout>
   )
 }

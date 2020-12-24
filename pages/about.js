@@ -5,7 +5,7 @@ import html from "remark-html"
 
 export default function About ({ html }) {
   return <PageLayout>
-    <div dangerouslySetInnerHTML={{ __html: html }} />
+    <div className={"prose lg:prose-xl"} dangerouslySetInnerHTML={{ __html: html }} />
   </PageLayout>
 }
 
@@ -15,12 +15,12 @@ export default function About ({ html }) {
 const markdown = `
 I am a full stack engineer who is passionate about product focused engineering.
 
-### Contributions
+## Contributions
 
 * [Github](https://github.com/NickTomlin)
 * [Stackoverflow](http://stackoverflow.com/users/1048479)
 
-#### Speaking
+## Speaking
 
 * Midwest.js 2015: Tdd The Hard Parts [[slides]](http://nick-tomlin.com/tdd-the-hard-parts/#/)
 * Open West 2015: Building Achievable Applications With Flux [[slides]](http://nick-tomlin.com/flux-talk/#/)
