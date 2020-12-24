@@ -1,4 +1,10 @@
-import "../styles/global.scss"
+// https://github.com/vercel/next.js/issues/13488#issuecomment-688253373
+import "../styles/tailwind.css"
+import "../styles/syntax-coldark.css"
+import "../styles/components.css"
+import "../styles/utilities.css"
+
+
 import {Header} from "../components/Header"
 import {Footer} from "../components/Footer"
 import Head from "next/head"
@@ -12,5 +18,5 @@ export default function App ({ Component, pageProps}) {
     <Header />
     <Component {...pageProps} />
     <Footer />
-    </>
+  </>
 }
