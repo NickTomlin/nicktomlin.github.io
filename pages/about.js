@@ -1,43 +1,47 @@
-// TODO: MDX
 import {PageLayout} from "../layouts/PageLayout"
-import remark from "remark"
-import html from "remark-html"
+import {TwitterIcon} from "../components/icons/TwitterIcon"
+import {GithubIcon} from "../components/icons/GithubIcon"
+import {LinkedInIcon} from "../components/icons/LinkedInIcon"
+import site from "../site.config"
+import {StackoverflowIcon} from "../components/icons/StackoverflowIcon"
 
-export default function About ({ html }) {
+export default function About () {
   return <PageLayout>
-    <div className={"prose lg:prose-xl"} dangerouslySetInnerHTML={{ __html: html }} />
+    <header className={"mb-4"}>
+      <h1 className={"text-4xl"}>About me</h1>
+    </header>
+
+    <section className={"prose prose-content mb-4"}>
+      <p>I am a product-focused full stack engineer. I love the process of taking an idea from a whiteboard to production.</p>
+    </section>
+
+    <section className={"grid grid-cols-2 gap-4"}>
+      <article className={"prose-content prose"}>
+        <h1>Contributions</h1>
+        <h2>Community</h2>
+        <p>
+          I share code, contribute to projects, and help write detailed issues on <a href={`https://github.com/${site.github_username}`}>Github</a>.
+        </p>
+        <p>
+          I answer, edit, and post questions on <a href={`http://stackoverflow.com/users/${site.stackoverflow_username}`}>StackOverflow</a>. If you're curious,{" "}
+          <a href="/posts/stackoverflow-as-a-learning-tool">I wrote a blog post about it</a>.
+        </p>
+        <h2>Speaking</h2>
+        <ul>
+          <li>Midwest.js 2015: Tdd The Hard Parts <a href="http://nick-tomlin.com/tdd-the-hard-parts/#/">[slides]</a></li>
+          <li>Open West 2015: Building Achievable Applications With Flux <a href="http://nick-tomlin.com/flux-talk/#/">[slides]</a></li>
+        </ul>
+      </article>
+
+      <article>
+        <header className={"prose-content prose mb-6"}>
+          <h1>Links</h1>
+        </header>
+        <GithubIcon username={site.github_username} />
+        <StackoverflowIcon username={site.stackoverflow_username}/>
+        <LinkedInIcon username={site.linkedIn_username} />
+        <TwitterIcon username={site.twitter_username} />
+      </article>
+    </section>
   </PageLayout>
-}
-
-/*
-* TODO: MDX
-* */
-const markdown = `
-I am a full stack engineer who is passionate about product focused engineering.
-
-## Contributions
-
-* [Github](https://github.com/NickTomlin)
-* [Stackoverflow](http://stackoverflow.com/users/1048479)
-
-## Speaking
-
-* Midwest.js 2015: Tdd The Hard Parts [[slides]](http://nick-tomlin.com/tdd-the-hard-parts/#/)
-* Open West 2015: Building Achievable Applications With Flux [[slides]](http://nick-tomlin.com/flux-talk/#/)
-
-### Social Media
-
-* [LinkedIn](https://www.linkedin.com/in/nick-tomlin-b0397636/)
-* [Twitter](https://twitter.com/itsnicktomlin)
-`
-
-export async function getStaticProps () {
-  const processed = await remark()
-    .use(html)
-    .process(markdown)
-  return {
-    props: {
-      html: processed.toString()
-    }
-  }
 }

@@ -32,7 +32,7 @@ export function Header () {
     <header className="relative my-2 min-h-56">
       <div className="wrapper flex justify-between">
         <div className={"flex-1 mt-2"}>
-          <a href={"/"}><img  src="/images/nt-logo.svg" alt={site.title}/></a>
+          <a href={"/"}><img className={"max-h-10"}  src="/images/nt-logo.svg" alt={site.title}/></a>
         </div>
         <Nav />
       </div>
