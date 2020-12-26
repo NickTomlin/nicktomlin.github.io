@@ -2,7 +2,7 @@ const config = {
   title: "Nick Tomlin: Full Stack Engineer",
   subtitle: "Always: JavaScript. Occasionally: poetry",
   email: "nick.tomlin+web@gmail.com",
-  description: "I'm Nick Tomlin, a full stack engineer. I like JavaScript.",
+  description: "I'm Nick Tomlin, a full stack engineer that loves JavaScript and poetry.",
   url: "https://nick-tomlin.com",
   twitter_username: "itsnicktomlin",
   github_username:  "nicktomlin",
