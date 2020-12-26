@@ -1,7 +1,7 @@
 import {PageLayout} from "../layouts/PageLayout"
 import {TwitterIcon} from "../components/icons/TwitterIcon"
 import {GithubIcon} from "../components/icons/GithubIcon"
-import {LinkedInIcon} from "../components/icons/LinkedInIcon"
+import {InIcon} from "../components/icons/InIcon"
 import site from "../site.config"
 import {StackoverflowIcon} from "../components/icons/StackoverflowIcon"
 
@@ -39,7 +39,7 @@ export default function About () {
         </header>
         <GithubIcon username={site.github_username} />
         <StackoverflowIcon username={site.stackoverflow_username}/>
-        <LinkedInIcon username={site.linkedIn_username} />
+        <InIcon username={site.linkedIn_username} />
         <TwitterIcon username={site.twitter_username} />
       </article>
     </section>
