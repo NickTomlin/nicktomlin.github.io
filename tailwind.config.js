@@ -13,10 +13,10 @@ module.exports = {
         DEFAULT: {
           css: {
             'code::before': {
-              content: '""'
+              content: 'none !important'
             },
             'code::after': {
-              content: '""'
+              content: 'none !important'
             }
           }
         }
