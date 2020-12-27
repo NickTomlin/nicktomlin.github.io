@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Practical Binary
-date: 2019-07-29T12:03
+date: '2019-07-29'
+disqusId: /2019/07/29/practical-binary
 ---
 
 I consider myself an experienced programmer, but my real-world experience is mostly in the full stack realm. I've never written a line of assembly; only written a tiny bit of `c`, and bit-shifting makes my head hurt.

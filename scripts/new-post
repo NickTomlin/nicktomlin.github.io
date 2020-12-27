@@ -1,0 +1,33 @@
+#! /usr/bin/env node
+
+const luxon = require('luxon')
+const path = require('path')
+const slugify = require('@sindresorhus/slugify')
+const fs = require('fs')
+const mkdirp = require('mkdirp')
+
+function main (title) {
+  const date = luxon.DateTime.local()
+  const dateString = date.toISODate()
+
+  const starterText = `
+---
+title: ${title}
+date: ${dateString}
+---
+`.trim()
+
+  const fileName = `${slugify(title)}.md`
+  const {year, month, day} = date
+  const dir = path.join(__dirname, '../posts', year.toString(), month.toString(), day.toString())
+  mkdirp.sync(dir)
+  const filePath = path.join(dir, fileName)
+  fs.writeFileSync(filePath, starterText)
+  console.log(`✅ Wrote '${title}' to ${filePath} ✅`)
+}
+
+
+const title = process.argv.slice(2)
+if (!/^\S+$/.test(title)) { console.error(`Invalid title supplied: ${title}`) }
+
+main(title.join(' ').trim())

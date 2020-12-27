@@ -1,6 +1,8 @@
 ---
 layout: post
 title: VimL Functions
+date: '2017-07-12'
+disqusId: /2017/07/12/viml-functions
 ---
 
 I've started a slow descent into the madness that is VimL. One of the things that I've found to be initially confusing is how Vim deals with functions. This may be very obvious to some but It caused me enough head scratching to warrant recording some thoughts here.
@@ -8,7 +10,7 @@ I've started a slow descent into the madness that is VimL. One of the things tha
 <details markdown="1">
   <summary>Cheatsheet</summary>
 
-```viml
+```vim
 " All VimL functions must be called
 " Operations like assignment
 " or passing to another function or built in
@@ -44,7 +46,7 @@ Having one way to call a function is boring: most languages have a few different
 
 Let's create a very simple function:
 
-```viml
+```vim
 " All Viml functions must begin with a capitol letter
 function! Hello(name)
   " :wave: Just in case you were wondering
@@ -56,7 +58,7 @@ endfunction
 
 The easiest way to call this function in a script, we could simply assign it to a variable, or pass the result of invoking it to a built in like `echo`:
 
-```viml
+```vim
 let greeting = Hello('bob')
 echo greeting
 "Hi Bob!"
@@ -68,7 +70,7 @@ This makes a _lot_ of sense! We've always been told that VimL doesn't make much 
 
 But, let's say we just want the side effects of a function and do not want to deal with whatever it returns. It'd make sense to do the same thing but just not assign it right?
 
-```viml
+```vim
 MySideEffectFunc('some side effecty argument')
 E492: Not an editor command: MySideEffectFunc()
 ```
@@ -77,7 +79,7 @@ Not so fast! VimL has other ideas; while certain built in commands (like `echo`)
 
 This is where [`:call`](http://vimdoc.sourceforge.net/htmldoc/eval.html#:call) steps in. `:call` calls a function, with up to 20 arguments (because 19 just wasn't enough), and discards its return value.
 
-```viml
+```vim
 :call MySideEffectFunc('this wooooorks')
 ```
 
@@ -87,7 +89,7 @@ Call is the _the_ way of calling functions within your plugins, or invoking othe
 
 Let's explore another way we can use our functions: references. Let's take a common example, using [`map`](http://vimdoc.sourceforge.net/htmldoc/eval.html#map()) with a function we've previously defined. We can use Vim's `function` keyword to create a funcref (that is a reference to function *wink* *wink*) which allows us to pass it to `map`, `filter`, or another function.
 
-```viml
+```vim
 function Exclaim(idx, name)
   return a:name . "!"
 endfunction
@@ -100,7 +102,7 @@ echo exclaimed
 
 If we wanted to take a more generic function that did not need to be aware of `idx`, we could use `string`ify our funcref and use `map`'s second argument (a string to be `eval`d) to invoke our function with the value of each pair we are iterating through:
 
-```viml
+```vim
 function Exclaim(name)
   return a:name . "!"
 endfunction
@@ -117,7 +119,7 @@ That works, but it's not very readable. Luckily, more modern versions of Vim hav
 
 If we, or our intended users, are using vim8+ or neovim, we can use the new lambda syntax to simplify things:
 
-```viml
+```vim
 function Exclaim(name)
   return a:name . "!"
 endfunction
@@ -130,7 +132,7 @@ echo exclaimed
 
 We can even remove our simple function entirely and perform our string modifications within the Lambda if we want:
 
-```viml
+```vim
 let greetings = ['Hey', 'Howdy', 'Hi']
 let exclaimed = map(greetings, {key, val -> val . '!'})
 echo exclaimed

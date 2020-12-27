@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Using Jackson CSV with kotlin
-date: 2020-04-15T10:38
+date: '2020-04-15'
+disqusId: /2020/04/15/using-jackson-csv-with-kotlin
 ---
 
 I've been exploring [kotlin](https://kotlinlang.org/) for new projects on the JVM and it's been lovely so far. I've enjoyed the mostly seamless interop with the Java I know and love. I say mostly because there are a few hurdles to jump through.

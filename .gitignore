@@ -3,3 +3,6 @@ _site
 .jekyll-metadata
 node_modules
 vendor
+_drafts
+.next
+out
