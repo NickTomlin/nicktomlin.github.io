@@ -2,14 +2,11 @@ import {getSortedPostsData} from "../lib/posts"
 import {PageLayout} from "../layouts/PageLayout"
 import {PostList} from "../components/post/PostList"
 
-export default function Blog ({ posts }) {
+export default function Posts ({ posts }) {
   return (
     <PageLayout>
-      <div className="home">
-        <h1 className="page-heading">All Posts</h1>
-        <PostList posts={posts}/>
-        <p className="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
-      </div>
+      <h1 className="lead text-5xl mb-3">Posts</h1>
+      <PostList posts={posts}/>
     </PageLayout>
   )
 }

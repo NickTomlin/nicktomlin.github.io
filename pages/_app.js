@@ -14,6 +14,7 @@ export default function App ({ Component, pageProps}) {
   return <>
     <Head>
       <meta name="description" key="description" content={site.description} />
+      <title>{site.title}</title>
     </Head>
     <Header />
     <Component {...pageProps} />

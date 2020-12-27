@@ -18,7 +18,7 @@ export default function Index ({ posts }) {
   * */
   return (
     <DefaultLayout>
-      <section className={"mb-2 flex flex-col items-center md:flex-row md:mb-4 lg:my-16 md:justify-evenly"}>
+      <section className={"mb-2 flex flex-col items-center justify-center md:flex-row md:mb-4 lg:my-16"}>
         <img src="/images/headshot.jpeg"
              className={"rounded-full border-solid border-4 border-brand-secondary max-h-64 mb-4"} />
         <article className={"text-center"}>
@@ -27,7 +27,7 @@ export default function Index ({ posts }) {
           <h3 className={"text-xl"}>
             I take ideas from a whiteboard to production
           </h3>
-          <div className={"grid grid-cols-2 gap-4 md:grid-cols-none md:flex my-5"}>
+          <div className={"grid grid-cols-2 gap-4 md:grid-cols-none md:flex my-5 transition-colors"}>
             <SocialLinks />
           </div>
         </article>
@@ -35,21 +35,23 @@ export default function Index ({ posts }) {
 
       <section className={"mb-2 flex flex-col md:flex-row md:mb-4 lg:my-16 md:justify-evenly"}>
         <section className={"mb-8"}>
-          <h1 className="text-3xl lead font-semibold tracking-wide">Writing</h1>
+          <h1 className="text-3xl lead font-semibold tracking-wide text-brand-secondary">Writing</h1>
           <PostList posts={posts.slice(0, 4)}/>
           <p className={"text-secondary text-md underline"}>
-            <Link href={"/blog"}>
-              <a className={"p-2 rounded-md bg-brand-secondary text-white"}>
+            <Link href={"/posts"}>
+              <button className={"p-2 rounded-md bg-brand-primary text-white no-underline"}>
                 All posts
-              </a>
+              </button>
             </Link>
           </p>
         </section>
 
         <section>
-          <h1 className="text-3xl lead font-semibold tracking-wide">Contributions</h1>
-          <p>Code on Github</p>
-          <p>Stackoverflow</p>
+          <h1 className="text-3xl lead font-semibold tracking-wide text-brand-secondary">Contributions</h1>
+          <div className={"my-6"}>
+            <p>Code on Github</p>
+            <p>Stackoverflow</p>
+          </div>
         </section>
       </section>
     </DefaultLayout>
