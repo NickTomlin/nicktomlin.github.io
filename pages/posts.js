@@ -6,7 +6,12 @@ export default function Posts ({ posts }) {
   return (
     <PageLayout>
       <h1 className="lead text-5xl mb-3">Posts</h1>
-      <PostList posts={posts}/>
+      <div>
+        <PostList
+          postTitleClassname={"text-2xl"}
+          posts={posts}
+        />
+      </div>
     </PageLayout>
   )
 }

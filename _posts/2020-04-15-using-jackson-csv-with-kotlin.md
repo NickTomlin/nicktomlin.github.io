@@ -4,7 +4,7 @@ title: Using Jackson CSV with kotlin
 date: 2020-04-15T10:38
 ---
 
-I've been exploring [kotlin](https://kotlinlang.org/) for new projects on the JVM and it's been lovely so far. I've enjoyed the mostly seamless interop with the Java I know and love. I say mostly because there are a few hurdles to jump through.
+I've been exploring [Kotlin](https://kotlinlang.org/) for new projects on the JVM and it's been lovely so far. I've enjoyed the mostly seamless interop with the Java I know and love. I say mostly because there are a few hurdles to jump through.
 
 One I issue I recently encountered involved using [Jackson's CSV dataformat](https://github.com/FasterXML/jackson-dataformats-text/tree/master/csv) with Kotlin data classes. This was obvious when I found the solution and tracked it back to the documentation, but not so obvious when I first encountered it.
 

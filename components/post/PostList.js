@@ -1,12 +1,13 @@
 import {Date} from "./Date"
 import Link from "next/link"
+import clsx from "clsx"
 
-export function PostList ({ posts }) {
-  return <section className="post-list">
+export function PostList ({ posts, className, postTitleClassname }) {
+  return <section className={className}>
     {posts.map(post => (
       <article key={post.id} className={"my-6"}>
         <header>
-          <p className={"text-2xl font-semibold"}>
+          <p className={clsx("text-xl font-semibold", postTitleClassname)}>
             <Link className="text-lg" href={post.href}>{post.title}</Link>
           </p>
         </header>

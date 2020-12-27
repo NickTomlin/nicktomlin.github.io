@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Link from "next/link"
 import {PostLayout} from "../../layouts/PostLayout"
 import {Date} from "../../components/post/Date"
 import {getAllPostIds, getPostData} from "../../lib/posts"
@@ -20,7 +21,14 @@ export default function Post ({ postData }) {
           </span>
         </header>
         <div className="post-content prose lg:prose-xl" itemProp="articleBody" dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
-        <footer>
+        <footer className={"my-10"}>
+          <div >
+            <Link href={"/posts"}>
+              <button className={"py-1 px-4 rounded-md bg-brand-primary text-white no-underline"}>
+                More posts
+              </button>
+            </Link>
+          </div>
           {postData.comments !== false &&
             <div className={"my-4"}>
               <DiscussionEmbed

@@ -14,8 +14,8 @@ export default function About () {
 
     <section className={"grid grid-cols-2 gap-4"}>
       <article className={"prose-content prose"}>
-        <h1>Contributions</h1>
-        <h2>Community</h2>
+        <h2>Contributions</h2>
+        <h3>Community</h3>
         <p>
           I share code, contribute to projects, and help write detailed issues on <a href={`https://github.com/${site.github_username}`}>Github</a>.
         </p>
@@ -23,7 +23,7 @@ export default function About () {
           I answer, edit, and post questions on <a href={`http://stackoverflow.com/users/${site.stackoverflow_username}`}>StackOverflow</a>. If you're curious,{" "}
           <a href="/posts/stackoverflow-as-a-learning-tool">I wrote a blog post about it</a>.
         </p>
-        <h2>Speaking</h2>
+        <h3>Speaking</h3>
         <ul>
           <li>Midwest.js 2015: Tdd The Hard Parts <a href="http://nick-tomlin.com/tdd-the-hard-parts/#/">[slides]</a></li>
           <li>Open West 2015: Building Achievable Applications With Flux <a href="http://nick-tomlin.com/flux-talk/#/">[slides]</a></li>
@@ -32,10 +32,12 @@ export default function About () {
 
       <article>
         <header className={"prose-content prose mb-6"}>
-          <h1>Links</h1>
+          <h2>Links</h2>
         </header>
 
-        <SocialLinks />
+        <div className={"space-y-2"}>
+          <SocialLinks />
+        </div>
       </article>
     </section>
   </PageLayout>
