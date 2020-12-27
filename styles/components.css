@@ -2,7 +2,7 @@
 
 /* https://github.com/vercel/next.js/issues/13488#issuecomment-688253373 */
 body {
-    border-top: 2px solid #df666d;
+    border-top: 2px solid var(--brand-primary);
 }
 
 .wrapper {

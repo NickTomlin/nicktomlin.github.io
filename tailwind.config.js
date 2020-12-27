@@ -3,6 +3,10 @@ module.exports = {
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
+      colors: {
+        'brand-primary': 'var(--brand-primary)',
+        'brand-secondary': 'var(--brand-secondary)'
+      },
       container: {
         center: true,
         padding: '1rem'

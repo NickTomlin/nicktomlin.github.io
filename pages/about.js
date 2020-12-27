@@ -1,9 +1,6 @@
 import {PageLayout} from "../layouts/PageLayout"
-import {TwitterIcon} from "../components/icons/TwitterIcon"
-import {GithubIcon} from "../components/icons/GithubIcon"
-import {InIcon} from "../components/icons/InIcon"
 import site from "../site.config"
-import {StackoverflowIcon} from "../components/icons/StackoverflowIcon"
+import {SocialLinks} from "../components/SocialLinks"
 
 export default function About () {
   return <PageLayout>
@@ -37,10 +34,8 @@ export default function About () {
         <header className={"prose-content prose mb-6"}>
           <h1>Links</h1>
         </header>
-        <GithubIcon username={site.github_username} />
-        <StackoverflowIcon username={site.stackoverflow_username}/>
-        <InIcon username={site.linkedIn_username} />
-        <TwitterIcon username={site.twitter_username} />
+
+        <SocialLinks />
       </article>
     </section>
   </PageLayout>
