@@ -62,4 +62,4 @@ And then?
 
 Sometimes reflection leads to an artifact like this blog post (which is great), but the primary output of reflection is internal: the feeling of being in touch with myself. this leads to me feeling healthier, being less surprised by my own reactions or feelings to life's inevitable hiccups, and having a better sense of overall direction in my life. these moments of reflection also provide great jumping points to talk with trusted friends who can add their own perspectives or advice.
 
-I hope that this brief overview of some of the challenges I've faced, and how I've used reflection as a way of grappling with them. I'd love to hear your thoughts and experiences in the comments.
+Hopefully there's something in my experience, and how i've been working through it, that's been helpful to you. I'd love to hear your thoughts and experiences in the comments.

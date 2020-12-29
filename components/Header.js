@@ -16,7 +16,7 @@ export function Header () {
           <a href={"/"}><img className={"max-h-10"}  src="/images/nt-logo.svg" alt={site.title}/></a>
         </div>
 
-        <nav className={"space-x-6 ml-8"}>
+        <nav className={"header-nav space-x-6 ml-8"}>
           <HeaderLink href={"/"}>Home</HeaderLink>
           <HeaderLink href={"/about"}>About</HeaderLink>
           <HeaderLink href={"/posts"}>Posts</HeaderLink>

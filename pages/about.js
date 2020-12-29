@@ -5,16 +5,28 @@ import {SocialLinks} from "../components/SocialLinks"
 export default function About () {
   return <PageLayout>
     <header className={"mb-4"}>
-      <h1 className={"text-4xl"}>About me</h1>
+      <h1 className={"text-4xl"}>About</h1>
     </header>
 
-    <section className={"prose prose-content mb-4"}>
-      <p>I am a product-focused full stack engineer. I love the process of taking an idea from a whiteboard to production.</p>
+    <section className={"grid md:grid-cols-2 gap-16 mb-10"}>
+      <article className={"prose prose-content"}>
+        <p>I am a full stack engineer who loves taking a product from an idea, to production, and beyond.</p>
+        <p>I'm fascinated with how organizations and teams work together to craft product experiences that delight users, and how I can bring that same passion and energy to whatever I do.</p>
+        <p>I am a generalist who has worked within most parts of the stack, but I find myself most comfortable as a "mid-stack" developer, concerned with integrations between systems and the holistic makeup of a data domain.</p>
+      </article>
+      <article>
+        <header className={"prose-content prose mb-6"}>
+          <h2 className={"decorated-heading"}>Links</h2>
+        </header>
+        <div className={"space-y-2"}>
+          <SocialLinks />
+        </div>
+      </article>
     </section>
 
-    <section className={"grid grid-cols-2 gap-4"}>
+    <section className={"grid md:grid-cols-2 gap-16"}>
       <article className={"prose-content prose"}>
-        <h2>Contributions</h2>
+        <h2 className={"decorated-heading"}>Contributions</h2>
         <h3>Community</h3>
         <p>
           I share code, contribute to projects, and help write detailed issues on <a href={`https://github.com/${site.github_username}`}>Github</a>.
@@ -31,13 +43,16 @@ export default function About () {
       </article>
 
       <article>
-        <header className={"prose-content prose mb-6"}>
-          <h2>Links</h2>
-        </header>
 
-        <div className={"space-y-2"}>
-          <SocialLinks />
-        </div>
+        <header className={"prose-content prose mb-6"}>
+          <h2 className={"decorated-heading"}>Hobbies</h2>
+          <ul>
+            <li>Hiking with my family.</li>
+            <li>Trying to answer the question, will it <a href="https://www.chefsteps.com/joule">Sous vide</a>?</li>
+            <li>Reading the occasional poem in my <a href="https://www.poetryfoundation.org/poetrymagazine/archive">long backlog</a></li>
+            <li>Drinking <a href="https://fieldworkbrewing.com/">delicious craft beer</a>.</li>
+          </ul>
+        </header>
       </article>
     </section>
   </PageLayout>

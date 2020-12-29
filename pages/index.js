@@ -4,18 +4,7 @@ import {getSortedPostsData} from "../lib/posts"
 import {PostList} from "../components/post/PostList"
 import {SocialLinks} from "../components/SocialLinks"
 
-// need to do this... for slugs
-// https://nextjs.org/docs/routing/dynamic-routes
 export default function Index ({ posts }) {
-  // TODO: if too small go to vertical format
-  /*
-  * 1. Switch header to vertical stacking
-  * 2. Make image bigger/larger at responsive
-  * 3. Figure out where to put posts
-  * 4. Title statement
-  *
-  * Add personality somehwo?
-  * */
   return (
     <DefaultLayout>
       <section className={"mb-2 flex flex-col items-center md:flex-row md:mb-4 lg:my-16"}>
@@ -25,7 +14,7 @@ export default function Index ({ posts }) {
           <h1 className="text-6xl lead font-semibold tracking-wide mb-2 lg:text-8xl">Nick Tomlin</h1>
           <h2 className={"text-3xl mb-2 lg:text-5xl"} >Full Stack Engineer</h2>
           <h3 className={"text-xl lg:text3xl"}>
-            I take ideas from a whiteboard to production.
+            From an idea, to production, and beyond!
           </h3>
           <div className={"grid grid-cols-2 gap-4 md:grid-cols-none md:flex my-5 transition-colors lg:text-xl"}>
             <SocialLinks />
@@ -35,7 +24,7 @@ export default function Index ({ posts }) {
 
       <section className={"mb-2 flex flex-col md:flex-row md:mb-4 lg:my-16"}>
         <article className={"mb-8"}>
-          <h1 className="text-3xl lead font-semibold tracking-wide">Writing</h1>
+          <h1 className="decorated-heading text-3xl lead font-semibold tracking-wide">Latest Posts</h1>
           <PostList
             posts={posts.slice(0, 4)}
           />
