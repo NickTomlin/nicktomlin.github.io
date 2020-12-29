@@ -34,6 +34,7 @@ body {
          height: 8px;
          width: .5rem;
          background-color: var(--brand-secondary);
+         border-radius: 9999px;
          top: .8rem;
          left: -.85rem;
          position: absolute;

@@ -11,8 +11,7 @@ export default function About () {
     <section className={"grid md:grid-cols-2 gap-16 mb-10"}>
       <article className={"prose prose-content"}>
         <p>I am a full stack engineer who loves taking a product from an idea, to production, and beyond.</p>
-        <p>I'm fascinated with how organizations and teams work together to craft product experiences that delight users, and how I can bring that same passion and energy to whatever I do.</p>
-        <p>I am a generalist who has worked within most parts of the stack, but I find myself most comfortable as a "mid-stack" developer, concerned with integrations between systems and the holistic makeup of a data domain.</p>
+        <p>I am a generalist with experience throughout the web stack, but I find myself most comfortable as a "mid-stack" developer. I am fascinated by how the relationships between people and systems contribute to the health of a product organization.</p>
       </article>
       <article>
         <header className={"prose-content prose mb-6"}>
@@ -29,7 +28,7 @@ export default function About () {
         <h2 className={"decorated-heading"}>Contributions</h2>
         <h3>Community</h3>
         <p>
-          I share code, contribute to projects, and help write detailed issues on <a href={`https://github.com/${site.github_username}`}>Github</a>.
+          I share code, contribute to open source projects (although less often these days!), and help write detailed issues on <a href={`https://github.com/${site.github_username}`}>Github</a>.
         </p>
         <p>
           I answer, edit, and post questions on <a href={`http://stackoverflow.com/users/${site.stackoverflow_username}`}>StackOverflow</a>. If you're curious,{" "}
@@ -37,8 +36,8 @@ export default function About () {
         </p>
         <h3>Speaking</h3>
         <ul>
-          <li>Midwest.js 2015: Tdd The Hard Parts <a href="http://nick-tomlin.com/tdd-the-hard-parts/#/">[slides]</a></li>
-          <li>Open West 2015: Building Achievable Applications With Flux <a href="http://nick-tomlin.com/flux-talk/#/">[slides]</a></li>
+          <li>Midwest.js 2015: Tdd The Hard Parts <a href="https://nicktomlin.github.io/tdd-the-hard-parts/#/">[slides]</a></li>
+          <li>Open West 2015: Building Achievable Applications With Flux <a href="https://nicktomlin.github.io/flux-talk/#/">[slides]</a></li>
         </ul>
       </article>
 

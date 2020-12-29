@@ -1,7 +1,7 @@
 // https://github.com/vercel/next.js/issues/13488#issuecomment-688253373
 import "../styles/tailwind.css"
 import "../styles/syntax-coldark.css"
-import "../styles/components.css"
+import "../styles/main.css"
 import "../styles/utilities.css"
 
 
