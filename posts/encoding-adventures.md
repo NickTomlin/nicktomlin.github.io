@@ -11,7 +11,7 @@ I've [previously talked][0] about how files are stored as binary and briefly tou
 Background: a very brief introduction to Unicode.
 ---
 
-> Note: if you understand Unicode, or you just don't care, feel free to skip this section.
+_**Note**: if you understand Unicode, or you just don't care, feel free to skip this section._
 
 Early computers used a character set called [`ASCII`](https://en.wikipedia.org/wiki/ASCII), which used the numbers `0-127` to represent both readable (e.g. `A`) and non-readable ("carriage return") characters. This worked wonderfully in small, North American context, but was woefully inadequate in terms of meeting global linguistic needs. Various competing extensions to ASCII were created to handle characters from different languages, but this led to compatibility issues and confusion when exchanging text in different encodings.
 
