@@ -29,7 +29,7 @@ export default function Index ({ posts }) {
 
       <section className={"mb-2 flex flex-col md:flex-row md:mb-4 lg:my-16"}>
         <article className={"mb-8"}>
-          <h1 className="decorated-heading text-3xl lead tracking-wide">Latest Posts</h1>
+          <h1 className="decorated-heading font-semibold text-3xl lead tracking-wide">Latest Posts</h1>
           <PostList
             posts={posts.slice(0, 4)}
           />
