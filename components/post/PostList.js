@@ -7,7 +7,7 @@ export function PostList ({ posts, className, postTitleClassname }) {
     {posts.map(post => (
       <article key={post.id} className={"my-6"}>
         <header>
-          <p className={clsx("text-xl font-semibold", postTitleClassname)}>
+          <p className={clsx("text-2xl", postTitleClassname)}>
             <Link className="text-lg" href={post.href}>{post.title}</Link>
           </p>
         </header>

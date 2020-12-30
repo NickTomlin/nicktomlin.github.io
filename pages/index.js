@@ -9,14 +9,14 @@ export default function Index ({ posts }) {
     <DefaultLayout>
       <section className={"mb-2 flex flex-col items-center md:flex-row md:mb-4 lg:my-16"}>
         <img src="/images/headshot.jpeg"
-             className={"rounded-full border-solid border-4 border-brand-secondary max-h-64 mb-4 lg:max-h-80 lg:mr-10"} />
+             className={"my-face"} />
         <article className={"text-center"}>
-          <h1 className="text-6xl lead font-semibold tracking-wide mb-2 lg:text-8xl">Nick Tomlin</h1>
+          <h1 className="my-name text-6xl lead tracking-wide mb-2 lg:text-8xl">Nick Tomlin</h1>
           <h2 className={"text-3xl mb-2 lg:text-5xl"} >Full Stack Engineer</h2>
           <h3 className={"text-xl lg:text3xl"}>
             From an idea, to production, and beyond!
           </h3>
-          <div className={"grid grid-cols-2 gap-4 md:grid-cols-none md:flex my-5 transition-colors lg:text-xl"}>
+          <div className={"grid grid-cols-2 gap-4 md:grid-cols-none md:flex my-6 transition-colors lg:text-xl"}>
             <SocialLinks />
           </div>
         </article>
@@ -24,7 +24,7 @@ export default function Index ({ posts }) {
 
       <section className={"mb-2 flex flex-col md:flex-row md:mb-4 lg:my-16"}>
         <article className={"mb-8"}>
-          <h1 className="decorated-heading text-3xl lead font-semibold tracking-wide">Latest Posts</h1>
+          <h1 className="decorated-heading text-3xl lead tracking-wide">Latest Posts</h1>
           <PostList
             posts={posts.slice(0, 4)}
           />

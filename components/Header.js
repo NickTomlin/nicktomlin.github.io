@@ -11,7 +11,7 @@ function HeaderLink ({ href, children }) {
 export function Header () {
   return (
     <header className="relative my-4 min-h-56">
-      <div className="wrapper flex items-center site-header">
+      <div className="wrapper flex items-center justify-between site-header">
         <div className={"mt-2"}>
           <a href={"/"}><img className={"max-h-10"}  src="/images/nt-logo.svg" alt={site.title}/></a>
         </div>

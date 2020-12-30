@@ -5,6 +5,23 @@ body {
     border-top: 2px solid var(--brand-primary);
 }
 
+.my-face {
+    min-width: 200px;
+    @apply rounded-full;
+    @apply border-solid;
+    @apply border-4;
+    @apply border-brand-secondary;
+    @apply max-h-64;
+    @apply mb-4;
+    @apply lg:max-h-80;
+    @apply lg:mr-10;
+}
+
+.my-name {
+    @apply font-title;
+    @apply font-semibold;
+}
+
 .wrapper {
     @apply container;
 }
@@ -28,6 +45,7 @@ body {
 
 .decorated-heading {
     position: relative;
+    @apply font-title;
     &::before {
          display: inline-block;
          content: "";

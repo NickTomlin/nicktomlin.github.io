@@ -1,8 +1,14 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   purge: ['./pages/**/*.js', './components/**/*.js'],
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Rubik', ...defaultTheme.fontFamily.sans],
+        title: defaultTheme.fontFamily.sans
+      },
       colors: {
         'brand-primary': 'var(--brand-primary)',
         'brand-secondary': 'var(--brand-secondary)'
