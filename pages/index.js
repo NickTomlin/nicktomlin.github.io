@@ -3,13 +3,18 @@ import {DefaultLayout} from "../layouts/DefaultLayout"
 import {getSortedPostsData} from "../lib/posts"
 import {PostList} from "../components/post/PostList"
 import {SocialLinks} from "../components/SocialLinks"
+import Image from "next/image"
 
 export default function Index ({ posts }) {
   return (
     <DefaultLayout>
       <section className={"mb-2 flex flex-col items-center md:flex-row md:mb-4 lg:my-16"}>
-        <img src="/images/headshot.jpeg"
-             className={"my-face"} />
+          <Image
+            className={"my-face"}
+            height={300}
+            width={300}
+            src="/images/headshot.jpeg"
+          />
         <article className={"text-center"}>
           <h1 className="my-name text-6xl lead tracking-wide mb-2 lg:text-8xl">Nick Tomlin</h1>
           <h2 className={"text-3xl mb-2 lg:text-5xl"} >Full Stack Engineer</h2>
