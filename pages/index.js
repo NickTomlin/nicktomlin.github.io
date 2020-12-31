@@ -9,6 +9,8 @@ export default function Index ({ posts }) {
     <DefaultLayout>
       <section className={"mb-2 flex flex-col items-center md:flex-row md:mb-4 lg:my-16"}>
         <picture>
+          <source srcSet="/images/headshot_uaj0dm_c_scale,w_373.webp" type="image/webp"/>
+          <source srcSet="/images/headshot_uaj0dm_c_scale,w_624.webp 2x" type="image/webp"/>
           <img
             className={"my-face"}
             sizes="(max-width: 1200px) 100vw, 1200px"
