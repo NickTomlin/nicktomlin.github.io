@@ -24,9 +24,9 @@ export default function Index ({ posts }) {
           <h1 className="my-name text-6xl lead tracking-wide mb-2 lg:text-8xl">Nick Tomlin</h1>
           <h2 className={"text-3xl mb-2 lg:text-5xl"} >Full Stack Engineer</h2>
           <h3 className={"text-xl lg:text3xl"}>
-            From an idea, to production, and beyond!
+            From an idea, to production, and beyond.
           </h3>
-          <div className={"grid grid-cols-2 gap-4 md:grid-cols-none md:flex my-6 transition-colors lg:text-xl"}>
+          <div className={"grid grid-cols-2 gap-4 md:grid-cols-none md:flex my-6 md:my-3 transition-colors lg:text-xl"}>
             <SocialLinks />
           </div>
         </article>
