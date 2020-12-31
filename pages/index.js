@@ -3,18 +3,23 @@ import {DefaultLayout} from "../layouts/DefaultLayout"
 import {getSortedPostsData} from "../lib/posts"
 import {PostList} from "../components/post/PostList"
 import {SocialLinks} from "../components/SocialLinks"
-import Image from "next/image"
 
 export default function Index ({ posts }) {
   return (
     <DefaultLayout>
       <section className={"mb-2 flex flex-col items-center md:flex-row md:mb-4 lg:my-16"}>
-          <Image
+        <picture>
+          <img
             className={"my-face"}
-            height={300}
-            width={300}
-            src="/images/headshot.jpeg"
-          />
+            sizes="(max-width: 1200px) 100vw, 1200px"
+            srcset="
+/images/headshot_uaj0dm_c_scale,w_190.jpg 190w,
+/images/headshot_uaj0dm_c_scale,w_373.jpg 373w,
+/images/headshot_uaj0dm_c_scale,w_508.jpg 508w,
+/images/headshot_uaj0dm_c_scale,w_624.jpg 624w"
+            src="/images/headshot_uaj0dm_c_scale,w_373.jpg"
+            alt="Nick Tomlin - Headshot" />
+        </picture>
         <article className={"text-center"}>
           <h1 className="my-name text-6xl lead tracking-wide mb-2 lg:text-8xl">Nick Tomlin</h1>
           <h2 className={"text-3xl mb-2 lg:text-5xl"} >Full Stack Engineer</h2>
