@@ -12,14 +12,14 @@ function main (title) {
 
   const starterText = `
 ---
-title: ${title}
+title: "${title}"
 date: ${dateString}
 ---
 `.trim()
 
   const fileName = `${slugify(title)}.md`
   const {year, month, day} = date
-  const dir = path.join(__dirname, '../posts', year.toString(), month.toString(), day.toString())
+  const dir = path.join(__dirname, '../posts')
   mkdirp.sync(dir)
   const filePath = path.join(dir, fileName)
   fs.writeFileSync(filePath, starterText)
