@@ -14,7 +14,7 @@ export default function Index ({ posts }) {
           <img
             className={"my-face"}
             sizes="(max-width: 1200px) 100vw, 1200px"
-            srcset="
+            srcSet="
 /images/headshot_uaj0dm_c_scale,w_190.jpg 190w,
 /images/headshot_uaj0dm_c_scale,w_373.jpg 373w,
 /images/headshot_uaj0dm_c_scale,w_508.jpg 508w,
