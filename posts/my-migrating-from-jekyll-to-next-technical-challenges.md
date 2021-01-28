@@ -44,7 +44,7 @@ There may be some magical Liquid to JSX converter out there, but writing one was
 
 ## Converting slugs
 
-My Jekyll site had deeply nestd post slugs in the format of `[year]/[month]/[day]/[id]`. I initially went down the route of replicating this pattern, but decided to simplify to just `[id]`. There were two reasons for this:
+My Jekyll site had deeply nested post slugs in the format of `[year]/[month]/[day]/[id]`. I initially went down the route of replicating this pattern, but decided to simplify to just `[id]`. There were two reasons for this:
 
 - The "convention based" nested routes in `next.js` made generating and navigating between posts complicated, especially with file-based static site generation
 - For a low throughput blog like mine, the granularity of `[year]/[month]/[day]/[id]` was overkill and not a good look anyway
@@ -59,7 +59,7 @@ While simplifying the url made things easier (and more readable IMHO), it broke 
 
 Out of the box, Jekyll supports markdown with [Kramdown](https://kramdown.gettalong.org/) and syntax highlighting in code snippets with [rouge](http://rouge.jneen.net/). Next.js has no support for this, but adding it is trivial.  I replaced [Kramdown](https://kramdown.gettalong.org/) with [remark](https://github.com/remarkjs/remark) and Rouge with [`prism`](https://prismjs.com/).
 
-Normally I would have balked at all this work, but because of the fact that `next.js` is built like a React app, assembling these pieces were easy because I wasn't dealing with weird `next.js` plugins or overriding things with custom config blobs. The functionality is expressed in [10 lines of code](https://github.com/NickTomlin/nicktomlin.github.io/blob/master/lib/markdown.js#L5-L13).
+Normally I would have balked at all this work, but because of the fact that `next.js` is built like a React app, assembling these pieces was easy. I wasn't dealing with weird `next.js` plugins or overriding things with custom config blobs; just writing application code. All that functionality boiled down to about [10 lines of code](https://github.com/NickTomlin/nicktomlin.github.io/blob/master/lib/markdown.js#L5-L13).
 
 Converting the existing posts was done through a [a script][1].
 
