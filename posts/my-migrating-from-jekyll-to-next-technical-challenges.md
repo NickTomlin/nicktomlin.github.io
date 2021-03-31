@@ -1,5 +1,5 @@
 ---
-title: "My migrating from Jekyll to Next: Technical Challenges"
+title: "My migrating from Jekyll to Next.js: Technical Challenges"
 date: 2021-01-25
 ---
 
