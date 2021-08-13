@@ -14,7 +14,7 @@
     "mkdirp": "^1.0.4",
     "next": "^11.1.0",
     "next-remote-watch": "^0.3.0",
-    "postcss": "^8.2.1",
+    "postcss": "^8.2.10",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^14.0.0",
     "postcss-nested": "^5.0.3",
