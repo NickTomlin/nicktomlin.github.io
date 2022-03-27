@@ -14,7 +14,7 @@ This article provides some hands-on examples of one of the more interesting sect
 There are 10 types of people in the world
 ---
 
-When people talk about expressing things in binary, my first impulse is to treat them like they are [joking around](https://www.convertbinary.com/joke/) or [nonsensical robots](https://www.youtube.com/watch?v=Ia9N_wZaoa4). In practice, binary data itself is quite once you get past the initial shift.
+When people talk about expressing things in binary, my first impulse is to treat them like they are [joking around](https://www.convertbinary.com/joke/) or [nonsensical robots](https://www.youtube.com/watch?v=Ia9N_wZaoa4). In practice, binary data itself is quite simple once you make the initial mental shift.
 
 
 ### Terms
@@ -22,12 +22,12 @@ When people talk about expressing things in binary, my first impulse is to treat
 This post isn't about binary itself, but I'll briefly detail some terms before we move on:
 
 - [`binary`](https://en.wikipedia.org/wiki/Binary_number) numbers are expressed in a base 2. If this is entirely foreign to you, I'd highly suggest reading the Wikipedia article, [`code`][0], and doing some simple decimal to binary conversions in your head.
-    - Here is a simple example, for the binary number `1001`:
+    - Here is a simple example, for the binary number `1001` converted to a decimal one:
 
         ```
-        1 0 0 1 => 000 00 9
-        - - - -    --- -- -
-        8 4 2 1 => 100 10 1
+        1 0 0 1  =  000 00 9
+        - - - -     --- -- -
+        8 4 2 1  =  100 10 1
         ```
 
       where the our decimal (base 10) system uses positions based on the powers of `10` (1, 10, 100, 1000...), binary uses positons based on the powers of `2` (1, 2, 4, 8...)
@@ -114,9 +114,9 @@ While that mapping is important, it doesn't have anything to do with those bits.
 Now that we understand the encoding we are going to use, and the charset it will map to, let's break things out onto a few lines to talk about how the ASCII and UTF8 see those bits:
 
 ```
-01101000 -> 104 ('h' in ascii and 0x68 Unicode)
-01101001 -> 105 ('i' in ascii and 0x69 Unicode)
-00001010 -> 9 (newline in ascii and Unicode)
+01101000 = 104 (h in ascii and 0x68 Unicode)
+01101001 = 105 (i in ascii and 0x69 Unicode)
+00001010 = 9 (newline in ascii and Unicode)
 ```
 
 Again, the computer just sees (and happily whirs through) a long sequence of binary: `011010000110100100001010` but it's doing the aforementioned mapping when we get to our terminal.
