@@ -3,7 +3,7 @@ title: "An introduction to esbuild plugins"
 date: 2023-04-02
 ---
 
-This post provides a brief introduction to `esbuild`'s build pipeline and shows to create basic `esbuild` plugins.
+This post provides a brief introduction to `esbuild`'s build pipeline and plugin api.
 
 # What is esbuild?
 
@@ -11,7 +11,7 @@ This post provides a brief introduction to `esbuild`'s build pipeline and shows 
 
 ## Why write a plugin?
 
-While `esbuild` does many things out of the box, there are many things it does do to maintain focus and speed. There is a growing list of [community plugins](https://github.com/esbuild/community-plugins) you may — like me — find yourself needing to do something that esbuild does not do out of the box.
+While `esbuild` does many things out of the box, there are many things it chooses not to do in order to maintain focus and speed. There is a growing list of [community plugins](https://github.com/esbuild/community-plugins) that you may — like me — find yourself needing to do something that esbuild does not do out of the box.
 
 A few important things to note:
 
@@ -23,7 +23,7 @@ A few important things to note:
 
 # An overview
 
-Before we dive into plugin code, it will be useful to go over how `esbuild` works at a high level. At its core, an `esbuild` `build` involves a few core steps:
+At its core, an `esbuild` `build` involves a few steps:
 
 - input
 - resolve
@@ -57,7 +57,7 @@ The `resolve` step involves taking a path (an filesystem path or an `import`/`re
 
 The `load` step takes a resolved path from the previous stage and loads the content for that path. This can take the form of reading it from the file system, a url, or creating it on the fly.
 
-Typically this takes the form of `JavaScript`, since the output target of `esbuild` is a JS application, but there is built in support for several different [content types](https://esbuild.github.io/content-types/)
+Typically, this takes the form of `JavaScript`, since the output target of `esbuild` is a JS application, but there is built in support for several different [content types](https://esbuild.github.io/content-types/)
 
 
 ### `imports` and the build "stack"
@@ -234,7 +234,7 @@ This is a simplistic example, but this pattern can be repeated and extended to h
 
 # :wave:
 
-That was a brief introduction to `esbuild` plugins; hopefully, it can be of some help as you write (or debug) esbuild plugins yourself.
+That was a brief introduction to `esbuild` plugins; hopefully it can be of some help as you write (or debug) esbuild plugins yourself.
 
 You can see more small examples in [my example repository](https://github.com/NickTomlin/simple-esbuild-plugin-examples) and I would also recommend browsing the [community plugins](https://github.com/esbuild/community-plugins) for inspiration!
 
