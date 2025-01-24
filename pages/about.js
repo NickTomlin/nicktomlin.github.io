@@ -10,7 +10,7 @@ export default function About () {
 
     <section className={"grid md:grid-cols-2 gap-16 mb-10"}>
       <article className={"prose prose-content"}>
-        <p>I am a full stack engineer who loves taking a product from an idea, to production, and beyond.</p>
+        <p>I am a full stack engineer who loves taking a product from an idea, to production, and beyond. TEST!!!!</p>
         <p>I am a generalist with experience throughout the web stack, but I find myself most comfortable as a "mid-stack" developer. I am fascinated by how the relationships between people and systems contribute to the health of a product organization.</p>
       </article>
       <article>
