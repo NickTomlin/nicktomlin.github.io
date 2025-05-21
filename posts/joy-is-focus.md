@@ -1,6 +1,6 @@
 ---
 title: "Joy is focus"
-date: 2025-04-28
+date: 2025-05-22
 ---
 
 When you think of focus, what comes to mind? Something functional, like a gymnast landing a vault? Or spiritual: a slow release of breath or a prayer? Is it calm? Or intense? Me? I think of the pine trees that grew behind the house I grew up in. This post is a meditation on focus, specifically the difficulty of doing it in our fragmented world, through those childhood days.
@@ -19,14 +19,14 @@ I have read so many articles about trying to be present and achieve some Zen-lik
 
 ## Now
 
-While there were downsides to those days – primarily loneliness – I find myself longing for that sense of quiet peace more than regretting it. Now, My world is filled with feeds, todos, and pings.
+My world is filled with feeds, todos, and pings. While there were downsides to those days – primarily loneliness – I find myself longing for those periods of quietude and peace more often than regretting them.
 
-I find myself countering this excess with _more_: looking at my phone and reading an article while I'm watching a show that's only mildly interesting; listening to music while driving and trying to talk with my wife or kids. Hopping between Slack, and my code editor, and Figma, and my browser. The more I pull down to refresh the feed of my life, the scattered and spent I feel.
+Sadly, my counter to being flooded is often just to add _more_ things: looking at my phone and reading an article while I'm watching a show that's only mildly interesting; listening to music while driving and trying to talk with my wife or kids. Hopping between Slack, and my code editor, and Figma, and my browser. The more I pull down to refresh the feed of my life, the scattered and spent I feel.
 
-I am slowly discovering that joy comes from _less_: from pairing away all the data, lifehcking, and structure i've built to try and 10x mylife. When I put away my phone or my planner, I start to notice the shape of the clouds on a sunny day; I can laugh (or wince) at one of my kids corny jokes at dinner; I can hear my voice joining in a hymn with hundreds of other voices at my church. These are all a return to building those small, fundamental "core memory" moments.
+I am slowly discovering that joy comes from _less_: from pairing away all the articles and lifehacking i've added into my life. When I put away my phone or my planner, I start to notice the shape of the clouds on a sunny day; I can laugh (or wince) at one of my kids corny jokes at dinner; I can hear my voice joining in a hymn with hundreds of other voices at my church. These are all a return to building those small, fundamental "core memory" moments.
 
 ## Next
 
 As I look forward, I am trying to figure out a way to re-claim more of that focus in my day-to-day life. This is tricky, because I am also a Software Engineer so pings are part of how I make my living. I also love technology too much to chuck it all away on a walden pond escape. But, I also understand how much being in the industry -- and relying on my computer and phone -- have a stake in capturing and monetizing our focus.
 
-I'll share more about the strategies and mindset I'm trying to adopt in a subsequent post, but the `tldr;` is that I am trying to slowly walk away from pursuing distraction, starting to limit it, and moving back to that simple, child-like, focus on the wonder of the world around me.
+I'll share more about the strategies and mindset I'm trying to adopt in a subsequent post, but the `tl;dr` is that I am trying to slowly walk away from pursuing distraction, starting to limit it, and moving back to that simple, child-like, focus on the wonder of the world around me.
