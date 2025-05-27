@@ -10,7 +10,7 @@
     "disqus-react": "^1.1.5",
     "fast-glob": "^3.2.4",
     "gray-matter": "^4.0.2",
-    "luxon": "^1.25.0",
+    "luxon": "^1.28.1",
     "mkdirp": "^1.0.4",
     "next": "^12.3.2",
     "next-remote-watch": "^0.3.0",
