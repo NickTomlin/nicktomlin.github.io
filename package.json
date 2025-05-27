@@ -12,7 +12,7 @@
     "gray-matter": "^4.0.2",
     "luxon": "^1.28.1",
     "mkdirp": "^1.0.4",
-    "next": "^12.3.2",
+    "next": "^14.2.26",
     "next-remote-watch": "^0.3.0",
     "postcss": "^8.2.13",
     "postcss-flexbugs-fixes": "^5.0.2",
