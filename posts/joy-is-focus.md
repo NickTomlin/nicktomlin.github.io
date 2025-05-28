@@ -1,13 +1,13 @@
 ---
 title: "Joy is focus"
-date: 2025-05-22
+date: 2025-05-28
 ---
 
-When you think of focus, what comes to mind? Something functional, like a gymnast landing a vault? Or spiritual: a slow release of breath or a prayer? Is it calm? Or intense? Me? I think of the pine trees that grew behind the house I grew up in. This post is a meditation on focus, specifically the difficulty of doing it in our fragmented world, through those childhood days.
+When you think of focus, what comes to mind? Something functional, like a gymnast landing a vault? Or spiritual, a slow release of breath or a prayer? Is it calm? Or intense? Me? I think of the pine trees that grew behind the house I grew up in. This post is a meditation on focus, specifically the difficulty of doing it in our fragmented world, through those childhood days.
 
 ## Then
 
-I grew up on 3 acres surrounded by quickly urbanizing farmland. My family did not have a TV or internet (to be fair, few people had internet); my dad had a cell phone the size of brick; I was homeschooled. I few friends, a lot of time, and so I spent it on a few key activities:
+I grew up on 3 acres surrounded by quickly urbanizing farmland. My family did not have a TV or internet (to be fair, few people had internet); my dad had a cell phone the size of brick; I was homeschooled. With few friends and a lot of time, I split it across a few activities:
 
 **Wandering around the pine forest on our land**. Sometimes I'd simply lie down in a bed of pine needles to listen to the wind or see how sunlight changed as it filtered through the layers of tree canopy above. I've alwys hated pine scented products because they feel like such a poor imitation of that soft, clean smell of fresh pine needles.
 
@@ -19,11 +19,11 @@ I have read so many articles about trying to be present and achieve some Zen-lik
 
 ## Now
 
-My world is filled with feeds, todos, and pings. While there were downsides to those days – primarily loneliness – I find myself longing for those periods of quietude and peace more often than regretting them.
+My world is filled with feeds, todos, and pings. While those childhood days had downsides – primarily loneliness – I find myself longing for those periods of quietude and peace more often than regretting them.
 
-Sadly, my counter to being flooded is often just to add _more_ things: looking at my phone and reading an article while I'm watching a show that's only mildly interesting; listening to music while driving and trying to talk with my wife or kids. Hopping between Slack, and my code editor, and Figma, and my browser. The more I pull down to refresh the feed of my life, the scattered and spent I feel.
+Sadly, I find myself looking at my phone and reading an article while I'm watching a show that's only mildly interesting; listening to music while driving and trying to talk with my wife or kids. Hopping between Slack, and my code editor, and Figma, the latest A.I. assistant, and my browser. The more I pull down to refresh the feed of my life, the scattered and spent I feel.
 
-I am slowly discovering that joy comes from _less_: from pairing away all the articles and lifehacking i've added into my life. When I put away my phone or my planner, I start to notice the shape of the clouds on a sunny day; I can laugh (or wince) at one of my kids corny jokes at dinner; I can hear my voice joining in a hymn with hundreds of other voices at my church. These are all a return to building those small, fundamental "core memory" moments.
+I am slowly discovering that joy comes from _less_: from pairing away all the articles and lifehacking I've added into my life. When I put away my phone or my planner, I start to notice the shape of the clouds on a sunny day; I can laugh (or wince) at one of my kids corny jokes at dinner; I can hear my voice joining in a hymn with hundreds of other voices at my church. These are all a return to building those small, fundamental "core memory" moments.
 
 ## Next
 
