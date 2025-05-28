@@ -28,7 +28,7 @@ export default function Index ({ posts }) {
           <h3 className={"text-xl lg:text3xl"}>
             From an idea, to production, and beyond.
           </h3>
-          <div className={"grid grid-cols-2 gap-4 md:grid-cols-none md:flex my-6 md:my-3 transition-colors lg:text-xl"}>
+          <div className={"grid grid-cols-2 gap-4 my-2 md:grid-cols-none md:flex justify-center transition-colors lg:text"}>
             <SocialLinks />
           </div>
         </article>
