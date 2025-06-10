@@ -3,7 +3,9 @@ title: "Joy is focus"
 date: 2025-05-28
 ---
 
-When you think of focus, what comes to mind? Something functional, like a gymnast landing a vault? Or spiritual, a slow release of breath or a prayer? Is it calm? Or intense? Me? I think of the pine trees that grew behind the house I grew up in. This post is a meditation on focus, specifically the difficulty of doing it in our fragmented world, through those childhood days.
+When you think of focus, what comes to mind? Something functional, like a gymnast landing a vault? Or spiritual, a slow release of breath or a prayer? Is it calm? Or intense? _Me?_ I think of the pine trees that grew behind the house I grew up in.
+
+This post is a meditation on focus, specifically the difficulty of doing it in our fragmented world, through the lens of those childhood days.
 
 ## Then
 
