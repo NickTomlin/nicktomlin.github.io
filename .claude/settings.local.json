@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "mcp__playwright__browser_take_screenshot",
+      "mcp__playwright__browser_navigate"
     ],
     "deny": []
   }

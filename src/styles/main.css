@@ -27,7 +27,7 @@ body {
 }
 
 .page-content {
-    @apply py-2;
+    @apply pt-0;
 }
 
 .header-nav {
