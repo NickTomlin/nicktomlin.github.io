@@ -1,0 +1,30 @@
+---
+import Date from './Date.astro';
+import { type CollectionEntry } from 'astro:content';
+import clsx from 'clsx';
+
+export interface Props {
+  posts: CollectionEntry<'posts'>[];
+  className?: string;
+  postTitleClassname?: string;
+}
+
+const { posts, className, postTitleClassname } = Astro.props;
+---
+
+<section class={className}>
+  {posts.map(post => (
+    <article class="my-6">
+      <header>
+        <p class={clsx('text-2xl', postTitleClassname)}>
+          <a class="text-lg" href={`/posts/${post.slug}`}>{post.data.title}</a>
+        </p>
+      </header>
+      <footer>
+        <p class="text-lg">
+          <Date dateString={post.data.date} />
+        </p>
+      </footer>
+    </article>
+  ))}
+</section>

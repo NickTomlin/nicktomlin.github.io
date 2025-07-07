@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>An introduction to esbuild plugins</title><meta name="description" content="I'm Nick Tomlin, a full stack engineer that loves JavaScript and poetry."><link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/about.D3jOyiIK.css"></head> <body> <header class="relative my-4 min-h-56"> <div class="wrapper flex items-center justify-between site-header"> <div class="mt-2"> <a href="/"><img class="max-h-10" src="/images/nt-logo.svg" alt="Nick Tomlin: Full Stack Engineer"></a> </div> <nav class="header-nav space-x-6 ml-8"> <a href="/" class="hover:underline hover:text-brand-secondary transition-all">Home</a> <a href="/about" class="hover:underline hover:text-brand-secondary transition-all">About</a> <a href="/posts" class="hover:underline hover:text-brand-secondary transition-all">Posts</a> </nav> </div> </header> <main>  <div class="page-content"> <div class="wrapper"> <article itemscope itemtype="http://schema.org/BlogPosting"> <header class="my-4"> <h1 class="lead text-5xl mb-3" itemprop="name headline">An introduction to esbuild plugins</h1> <time datetime="Sat Apr 01 2023 19:00:00 GMT-0500 (Central Daylight Time)" itemprop="datePublished">Invalid DateTime</time> </header> <div class="post-content prose lg:prose-xl" itemprop="articleBody"> <p>This post provides a brief introduction to <code>esbuild</code>’s build pipeline and plugin api.</p>
+<h1 id="what-is-esbuild">What is esbuild?</h1>
+<p><a href="https://esbuild.github.io/">esbuild</a> is JavaScript bundler that processes files and turns them into a JavaScript bundle that Runtime (like ,node.js, <code>Deno</code>, or your browser) can execute. Many tools also do this, but <code>esbuild</code>’s focus on a small feature set, clean API, and blazing fast speed set it apart. This is why it is used in projects like <a href="https://vitejs.dev/"><code>vite</code></a>, <a href="https://remix.run/"><code>remix</code></a> and <a href="https://esm.sh/"><code>esm.sh</code></a>, and <em>many more</em>.</p>
+<h2 id="why-write-a-plugin">Why write a plugin?</h2>
+<p>While <code>esbuild</code> does many things out of the box, there are many things it chooses not to do in order to maintain focus and speed. There is a growing list of <a href="https://github.com/esbuild/community-plugins">community plugins</a> that you may — like me — find yourself needing to do something that esbuild does not do out of the box.</p>
+<p>A few important things to note:</p>
+<ol start="0">
+<li><code>esbuild</code>’s plugin architecture is just about <code>resolv</code>ing and <code>load</code>ing. Anything beyond simple text processing will be up to you. This means if you want to <a href="https://esolangs.org/wiki/Language_list">compile your favorite esoteric language to js</a> you will have to run a compiler in your <code>load</code>er.
+<ul>
+<li>Running a compiler in <code>load</code> will (naturally) make your build slower.</li>
+</ul>
+</li>
+<li>The plugin architecture is simple and fast because it is limited. It may not be possible to do what you want with an <code>esbuild</code> plugin.</li>
+<li>Plugins only work in <code>go</code> and <code>javascript</code>. There is a <a href="https://esbuild.github.io/getting-started/#wasm"><code>wasm</code></a> version but it does not have plugin support and is much slower.</li>
+</ol>
+<h1 id="an-overview">An overview</h1>
+<p>At its core, an <code>esbuild</code> <code>build</code> involves a few steps:</p>
+<ul>
+<li>input</li>
+<li>resolve</li>
+<li>load</li>
+<li>output</li>
+</ul>
+<img src="/images/esbuild-pipeline-basic@2x.png" style="max-height: 90vh">
+<h3 id="input">Input</h3>
+<p><code>input</code> is the file(s) passed to <code>esbuild</code> and any subsequent files resolved in the process of the build (more on that later).</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#E1E4E8">esbuild.</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">  entryPoints: [</span><span style="color:#9ECBFF">"index.js"</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span></code></pre>
+<p>If <code>index.js</code> imports another file, that is added to the stack of inputs.</p>
+<h3 id="resolve">Resolve</h3>
+<p>The <code>resolve</code> step involves taking a path (an filesystem path or an <code>import</code>/<code>require</code> path) and directing it to something that can <code>load</code> it. Several <code>kind</code>s of paths that can be resolved. A few important ones:</p>
+<ul>
+<li><code>entryPoint</code> a file, like <code>index.js</code></li>
+<li><code>import</code>: an import like <code>import(”./util.js”)</code> or <code>require(”./foo.js”)</code> or <code>@import(“my.css”)</code></li>
+</ul>
+<h3 id="load">Load</h3>
+<p>The <code>load</code> step takes a resolved path from the previous stage and loads the content for that path. This can take the form of reading it from the file system, a url, or creating it on the fly.</p>
+<p>Typically, this takes the form of <code>JavaScript</code>, since the output target of <code>esbuild</code> is a JS application, but there is built in support for several different <a href="https://esbuild.github.io/content-types/">content types</a></p>
+<h3 id="imports-and-the-build-stack"><code>imports</code> and the build “stack”</h3>
+<p>While the build process can be envisioned as a one-way pipeline, one of the unique features of <code>esbuild</code> is that <code>load</code>ed content can reference <em>other</em> files via <code>import</code>s. This allows the build to become aware of other files in a way that maps the natural grain of a module dependency graph. This means that files can add other files, and the split between <code>resolve</code> and <code>load</code> allows for scenarios where an <code>import</code> can be dynamically resolved from <em>anywhere</em> not just a file system path.</p>
+<p>You can think of an <code>import</code> as a way of pushing an <code>input</code> back onto the build stack, which then gets sent through the same familiar build pipeline. This modeling is the core of input processing plugins in <code>esbuild</code>.</p>
+<img src="/images/esbuild-pipeline-add.png" style="max-height: 90vh">
+<h1 id="plugins">Plugins</h1>
+<p>Now that we’ve explored how <code>esbuild</code>’s build time modeling works, we can launch into the plugin architecture.</p>
+<p>By default, <code>esbuild</code> includes <code>resolve</code> and <code>load</code> behavior to handle <code>js</code>/<code>ts</code>, <code>css</code>, <code>json</code> files. It automatically resolves, loads, and generates valid JavaScript output.</p>
+<h1 id="defining-a-plugin">Defining a plugin</h1>
+<p>The <a href="https://esbuild.github.io/plugins/#using-plugins">docs</a> do a good job of defining the APIs of plugins, but essentially <code>esbuild</code> allows plugins to hook into its build process to contribute to (and/or modify) the build. While, there are many different hooks an <code>esbuild</code> plugin can define,  This post will focus purely on the <code>onResolve</code> and <code>onLoad</code> hooks. These hooks are what I am most familiar with and are probably what most plugins will want to use anyway.</p>
+<h2 id="the-shape-of-a-plugin">The shape of a plugin</h2>
+<p>A common idiom is to define a plugin as a function that accepts options that your plugin may want to expose. This function then returns an <code>esbuild</code> plugin implementation with whatever hooks you want to use defined:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> myPlugin</span><span style="color:#E1E4E8"> ({</span><span style="color:#FFAB70">greeting</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "world"</span><span style="color:#E1E4E8">} </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {}) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        name: </span><span style="color:#9ECBFF">"MyPlugin"</span></span>
+<span class="line"><span style="color:#B392F0">        setup</span><span style="color:#E1E4E8">(build) {</span></span>
+<span class="line"><span style="color:#6A737D">            // use build hooks here</span></span>
+<span class="line"><span style="color:#E1E4E8">            build.onResolve(</span><span style="color:#6A737D">/* */</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">await</span><span style="color:#E1E4E8"> esbuild.</span><span style="color:#B392F0">build</span><span style="color:#E1E4E8">({</span></span>
+<span class="line"><span style="color:#E1E4E8">    entryPoints: [</span><span style="color:#9ECBFF">"index.js]</span><span style="color:#FDAEB7;font-style:italic">,</span></span>
+<span class="line"><span style="color:#B392F0">    plugins</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">myPlugin</span><span style="color:#E1E4E8">({ greeting: </span><span style="color:#9ECBFF">"Nick"</span><span style="color:#E1E4E8"> }))</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span></code></pre>
+<h2 id="example-a-vanilla-plugin">Example: A “vanilla” plugin</h2>
+<p>To make this more concrete, let’s create a simple plugin that replicates what <code>esbuild</code> does internally. We will <code>resolve</code> <code>js</code> files and then transform them in a <code>load</code>er by naively replacing every instance of <code>!</code> with <code>!!!</code>, just to prove that our plugin is actually handling things.</p>
+<p>First, we define our plugin, which is an object with a <code>name</code> property and a <code>setup</code> function:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> vanillaPlugin</span><span style="color:#E1E4E8"> () {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">      name: </span><span style="color:#9ECBFF">"vanillaPlugin"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">      setup</span><span style="color:#E1E4E8">: (</span><span style="color:#FFAB70">build</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">        // todo</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>now we can concentrate on actually defining how our plugin will interact with the build process:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// in the `setup` block above</span></span>
+<span class="line"><span style="color:#E1E4E8">build.</span><span style="color:#B392F0">onResolve</span><span style="color:#E1E4E8">({ filter:</span><span style="color:#9ECBFF"> /</span><span style="color:#85E89D;font-weight:bold">\.</span><span style="color:#DBEDFF">js</span><span style="color:#F97583">$</span><span style="color:#9ECBFF">/</span><span style="color:#E1E4E8"> }, (</span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        path: args.path,</span></span>
+<span class="line"><span style="color:#E1E4E8">        namespace: </span><span style="color:#9ECBFF">'vanilla'</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span></code></pre>
+<p>All this does is tell <code>esbuild</code> if a file ends with <code>.js</code> let <em>us</em> resolve it, rather than the built-in resolver.</p>
+<p>We use the return to pass the original path (e.g. <code>./src/index.js</code>) on to the <code>loader</code> and a special <code>namespace</code> to indicate that this should be loaded by something within that namespace, rather than a default loader.</p>
+<p>Now that we’ve claimed <code>.js</code> files as our own, we need to provide their contents with our own <code>onLoad</code> hook:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#E1E4E8">build.</span><span style="color:#B392F0">onLoad</span><span style="color:#E1E4E8">({ filter:</span><span style="color:#9ECBFF"> /</span><span style="color:#79B8FF">.</span><span style="color:#F97583">*</span><span style="color:#9ECBFF">/</span><span style="color:#E1E4E8">, namespace: </span><span style="color:#9ECBFF">"vanilla"</span><span style="color:#E1E4E8"> }, </span><span style="color:#F97583">async</span><span style="color:#E1E4E8"> (</span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    const</span><span style="color:#79B8FF"> contents</span><span style="color:#F97583"> =</span><span style="color:#F97583"> await</span><span style="color:#B392F0"> readFile</span><span style="color:#E1E4E8">(args.path, </span><span style="color:#9ECBFF">'utf8'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">        // a simple substitution just to prove that we've</span></span>
+<span class="line"><span style="color:#6A737D">        // loaded the file and are transforming it</span></span>
+<span class="line"><span style="color:#E1E4E8">        contents: contents.</span><span style="color:#B392F0">replace</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">'!'</span><span style="color:#E1E4E8">, </span><span style="color:#9ECBFF">'!!!'</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span></code></pre>
+<p>Like <code>onResolve</code> we are passing an object to help us filter down what we should load, but we are now using the <code>namespace</code> property to scope us to the <code>namespace</code> we specified in our <code>onResolve</code> hook:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#E1E4E8">{ </span><span style="color:#B392F0">filter</span><span style="color:#E1E4E8">:</span><span style="color:#9ECBFF"> /</span><span style="color:#79B8FF">.</span><span style="color:#F97583">*</span><span style="color:#9ECBFF">/</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">namespace</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"vanilla"</span><span style="color:#E1E4E8"> }</span></span></code></pre>
+<p>After that, we simply read the contents from the file system and perform a <code>replace</code> on them. For our simple use case, this works great, this would break a program that relies on <code>!</code> for logic, and we need to use an <code>ast</code> parser or complicated regex if we wanted to do more fine-grained manipulations.</p>
+<p>Our final output looks something like this:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> message</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "Meow!!!"</span><span style="color:#E1E4E8">;</span></span></code></pre>
+<p>Now, onto a slightly more complicated example.</p>
+<h2 id="virtual-files">Virtual files</h2>
+<p>Our first example dealt with files that were already on the file system.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#6A737D">// input.mjs</span></span>
+<span class="line"><span style="color:#F97583">import</span><span style="color:#E1E4E8"> { MESSAGE, NAME } </span><span style="color:#F97583">from</span><span style="color:#9ECBFF"> 'config:templates'</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">export</span><span style="color:#F97583"> default</span><span style="color:#F97583"> function</span><span style="color:#B392F0"> hello</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#6A737D">    // this will be inserted by our build step</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#9ECBFF"> `${</span><span style="color:#79B8FF">MESSAGE</span><span style="color:#9ECBFF">}, ${</span><span style="color:#79B8FF">NAME</span><span style="color:#9ECBFF">}!`</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>There is no <code>config:templates</code> module on the file system, so our plugin will <code>resolve</code> and <code>load</code> it with a “virtual” module.</p>
+<p>Again, we start with a plugin scaffold:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#F97583">function</span><span style="color:#B392F0"> templatePlugin</span><span style="color:#E1E4E8">({ </span><span style="color:#FFAB70">replacements</span><span style="color:#F97583"> =</span><span style="color:#E1E4E8"> {} } </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> {}) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        name: </span><span style="color:#9ECBFF">"templatePlugin"</span><span style="color:#E1E4E8">,</span></span>
+<span class="line"><span style="color:#B392F0">        setup</span><span style="color:#E1E4E8">: (</span><span style="color:#FFAB70">build</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">        // todo</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>And we resolve imports that contain <code>config:templates</code> to a plugin <code>namespace</code></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#E1E4E8">build.</span><span style="color:#B392F0">onResolve</span><span style="color:#E1E4E8">({ filter:</span><span style="color:#9ECBFF"> /</span><span style="color:#DBEDFF">config:templates</span><span style="color:#9ECBFF">/</span><span style="color:#E1E4E8"> }, (</span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        path: args.path,</span></span>
+<span class="line"><span style="color:#E1E4E8">        namespace: </span><span style="color:#9ECBFF">'templates'</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">})</span></span></code></pre>
+<p>Now we handle the actual content in an <code>onLoad</code>, by generating the source of <code>config:templates</code>, which is a simple <code>JSON</code> object:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#E1E4E8">  build.</span><span style="color:#B392F0">onLoad</span><span style="color:#E1E4E8">({ filter:</span><span style="color:#9ECBFF"> /</span><span style="color:#79B8FF">.</span><span style="color:#F97583">*</span><span style="color:#9ECBFF">/</span><span style="color:#E1E4E8">, namespace: </span><span style="color:#9ECBFF">"templatePlugin"</span><span style="color:#E1E4E8"> }, (</span><span style="color:#FFAB70">args</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">      return</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">          // we are using plugin options here, but this could easily come from a REST call or a database</span></span>
+<span class="line"><span style="color:#E1E4E8">          contents: </span><span style="color:#79B8FF">JSON</span><span style="color:#E1E4E8">.</span><span style="color:#B392F0">stringify</span><span style="color:#E1E4E8">(replacements),</span></span>
+<span class="line"><span style="color:#6A737D">          // let esbuild know that it should treat this as a `json` file, as opposed to a </span></span>
+<span class="line"><span style="color:#6A737D">          // a js file</span></span>
+<span class="line"><span style="color:#E1E4E8">          loader: </span><span style="color:#9ECBFF">'json'</span></span>
+<span class="line"><span style="color:#E1E4E8">      }</span></span>
+<span class="line"><span style="color:#E1E4E8">  })</span></span></code></pre>
+<p>The build output shows <code>esbuild</code> has bundled those hardcoded variables into our program:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0" data-language="javascript"><code><span class="line"><span style="color:#E1E4E8">(() </span><span style="color:#F97583">=></span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#6A737D">  // virtualFilePlugin:config:templates</span></span>
+<span class="line"><span style="color:#F97583">  var</span><span style="color:#79B8FF"> MESSAGE</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "Hello"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">  var</span><span style="color:#79B8FF"> NAME</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "World"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">  // examples/2-virtual-files/input.mjs</span></span>
+<span class="line"><span style="color:#F97583">  function</span><span style="color:#B392F0"> hello</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#9ECBFF"> `${</span><span style="color:#79B8FF">MESSAGE</span><span style="color:#9ECBFF">}, ${</span><span style="color:#79B8FF">NAME</span><span style="color:#9ECBFF">}!`</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">})();</span></span></code></pre>
+<p>This is a simplistic example, but this pattern can be repeated and extended to have multiple recursive <code>import</code>s to build out complicated module trees. All of that is built on the <code>resolve</code> and <code>load</code> primitives that <code>esbuild</code> provides.</p>
+<h1 id="wave">:wave:</h1>
+<p>That was a brief introduction to <code>esbuild</code> plugins; hopefully it can be of some help as you write (or debug) esbuild plugins yourself.</p>
+<p>You can see more small examples in <a href="https://github.com/NickTomlin/simple-esbuild-plugin-examples">my example repository</a> and I would also recommend browsing the <a href="https://github.com/esbuild/community-plugins">community plugins</a> for inspiration!</p>
+<p>Happy bundling!</p>
+<p>Nick</p> </div> <footer class="my-10"> <div> <a href="/posts" class="py-1 px-4 rounded-md bg-brand-primary text-white no-underline">
+More posts
+</a> </div> <div class="my-4"> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1SbcNQ" prefix="r1" component-url="/_astro/DisqusComments.9-ilZC2Y.js" component-export="default" renderer-url="/_astro/client.BNKbhxCX.js" props="{&quot;shortname&quot;:[0,&quot;nick-tomlin&quot;],&quot;config&quot;:[0,{&quot;locale&quot;:[0,&quot;en_US&quot;],&quot;identifier&quot;:[0,&quot;an-introduction-to-esbuild-plugins&quot;],&quot;title&quot;:[0,&quot;An introduction to esbuild plugins&quot;]}]}" ssr client="load" opts="{&quot;name&quot;:&quot;DisqusComments&quot;,&quot;value&quot;:true}" await-children><div id="disqus_thread"></div><!--astro:end--></astro-island> </div> </footer> </article> </div> </div>  </main> <!-- Empty footer for now --> </body></html>

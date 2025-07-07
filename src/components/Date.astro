@@ -1,0 +1,16 @@
+---
+import { DateTime } from 'luxon';
+
+export interface Props {
+  dateString: string | Date;
+  itemProp?: string;
+}
+
+const { dateString, itemProp } = Astro.props;
+
+// backwards compat with posts
+const sanitized = (dateString || '').toString().replace(/\s/, 'T');
+const formatted = DateTime.fromISO(sanitized).toLocaleString(DateTime.DATE_FULL);
+---
+
+<time datetime={dateString.toString()} itemprop={itemProp}>{formatted}</time>

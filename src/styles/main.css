@@ -1,0 +1,81 @@
+@import "variables.css";
+
+/* https://github.com/vercel/next.js/issues/13488#issuecomment-688253373 */
+body {
+    border-top: 2px solid var(--brand-primary);
+}
+
+.my-face {
+    min-width: 200px;
+    @apply rounded-full !important;
+    @apply border-solid !important;
+    @apply border-4 !important;
+    @apply border-brand-secondary !important;
+    @apply max-h-64;
+    @apply mb-4;
+    @apply lg:max-h-80;
+    @apply lg:mr-10;
+}
+
+.my-name {
+    @apply font-title;
+    @apply font-semibold;
+}
+
+.wrapper {
+    @apply container;
+}
+
+.page-content {
+    @apply py-2;
+}
+
+.header-nav {
+    a:last-child::after {
+        content: none;
+    }
+
+    a::after {
+        content: "/";
+        color: var(--brand-secondary);
+        display: inline-block;
+        margin-left: 1rem;
+    }
+}
+
+.decorated-heading {
+    position: relative;
+    @apply font-title;
+    &::before {
+         display: inline-block;
+         content: "";
+         height: 8px;
+         width: .5rem;
+         background-color: var(--brand-secondary);
+         border-radius: 9999px;
+         top: .8rem;
+         left: -.85rem;
+         position: absolute;
+     }
+}
+
+
+/* line before */
+.heading {
+    &::before {
+         color: red;
+     }
+}
+
+
+/*.section-heading {*/
+/*    @apply text-3xl;*/
+/*    @apply font-semibold;*/
+/*}*/
+
+/*.top-nav-item {*/
+/*    &:after {*/
+/*        display: inline-block;*/
+/*        content: "/";*/
+/*    }*/
+/*}*/

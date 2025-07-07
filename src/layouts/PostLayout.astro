@@ -1,0 +1,50 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Date from '../components/Date.astro';
+import DisqusComments from '../components/DisqusComments.jsx';
+
+export interface Props {
+  title: string;
+  date: Date;
+  disqusId?: string;
+  description?: string;
+}
+
+const { title, date, disqusId, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="page-content">
+    <div class="wrapper">
+      <article itemscope itemtype="http://schema.org/BlogPosting">
+        <header class="my-4">
+          <h1 class="lead text-5xl mb-3" itemprop="name headline">{title}</h1>
+          <Date dateString={date} itemProp="datePublished" />
+        </header>
+        
+        <div class="post-content prose lg:prose-xl" itemprop="articleBody">
+          <slot />
+        </div>
+        
+        <footer class="my-10">
+          <div>
+            <a href="/posts" class="py-1 px-4 rounded-md bg-brand-primary text-white no-underline">
+              More posts
+            </a>
+          </div>
+          <div class="my-4">
+            <DisqusComments 
+              shortname="nick-tomlin"
+              config={{
+                locale: "en_US",
+                identifier: disqusId || title,
+                title: title
+              }}
+              client:load
+            />
+          </div>
+        </footer>
+      </article>
+    </div>
+  </div>
+</BaseLayout>
