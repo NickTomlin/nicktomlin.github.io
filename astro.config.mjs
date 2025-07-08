@@ -6,6 +6,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://nick-tomlin.com',
   output: 'static',
+  outDir: './out',
   integrations: [
     react(),
     tailwind(),
