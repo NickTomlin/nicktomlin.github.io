@@ -7,3 +7,5 @@ vendor
 _drafts
 .next
 out
+# astro generated
+.astro
