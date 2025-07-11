@@ -1,0 +1,34 @@
+---
+import site from '../../site.config.js';
+
+interface IconProps {
+  href: string;
+  alt: string;
+  svgPath: string;
+  text: string;
+}
+
+const IconBase = ({ href, alt, svgPath, text }: IconProps) => `
+  <a href="${href}" target="_blank" rel="noopener nofollow" class="flex hover:underline hover:text-brand-primary transition-all">
+    <img class="inline mr-2" src="${svgPath}" height="16" width="16" alt="${alt}" />
+    <span class="icon--username">${text}</span>
+  </a>
+`;
+---
+
+<Fragment>
+  <a href={`https://github.com/${site.github_username}`} target="_blank" rel="noopener nofollow" class="flex hover:underline hover:text-brand-primary transition-all">
+    <img class="inline mr-2" src="/images/github.svg" height="16" width="16" alt="Github" />
+    <span class="icon--username">GitHub</span>
+  </a>
+  
+  <a href={`https://stackoverflow.com/users/${site.stackoverflow_username}`} target="_blank" rel="noopener nofollow" class="flex hover:underline hover:text-brand-primary transition-all">
+    <img class="inline mr-2" src="/images/stackoverflow.svg" height="16" width="16" alt="Stack Overflow" />
+    <span class="icon--username">Stack Overflow</span>
+  </a>
+  
+  <a href={`https://linkedin.com/in/${site.linkedIn_username}`} target="_blank" rel="noopener nofollow" class="flex hover:underline hover:text-brand-primary transition-all">
+    <img class="inline mr-2" src="/images/linkedin.svg" height="16" width="16" alt="LinkedIn" />
+    <span class="icon--username">LinkedIn</span>
+  </a>
+</Fragment>

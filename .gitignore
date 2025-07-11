@@ -1,4 +1,6 @@
 _site
+_dist
+dist
 .sass-cache
 .jekyll-metadata
 node_modules
@@ -6,3 +8,5 @@ vendor
 _drafts
 .next
 out
+# astro generated
+.astro

@@ -1,0 +1,18 @@
+---
+import { DateTime } from 'luxon';
+
+export interface Props {
+  dateString: string | Date;
+  itemProp?: string;
+}
+
+const { dateString, itemProp } = Astro.props;
+
+// Handle both Date objects and date strings
+const dt = dateString instanceof Date 
+  ? DateTime.fromJSDate(dateString, { zone: 'utc' })
+  : DateTime.fromFormat(dateString.toString(), 'yyyy-MM-dd', { zone: 'utc' });
+const formatted = dt && dt.isValid ? dt.toFormat('MMMM d, yyyy') : dateString.toString();
+---
+
+<time datetime={dateString.toString()} itemprop={itemProp}>{formatted}</time>

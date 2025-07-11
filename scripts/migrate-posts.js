@@ -28,7 +28,6 @@ function transform (path, { year, month, day }, name) {
     }
   })
   data.date = `${year}-${month}-${day}`
-  data.disqusId = `/${year}/${month}/${day}/${name}`
 
   // prism has different syntax names
   // than rouge/highlight

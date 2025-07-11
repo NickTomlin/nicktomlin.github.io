@@ -8,7 +8,6 @@ published: true
 categories:
   - php
   - html email
-disqusId: /2012/08/31/using-phpmailer-for-fun-and-profit
 ---
 <p>I recently needed to send a create a form that would send an html email with a PDF attachement. Due to some project constraints, using a service like MailChimp (which I do love oh so much) was out of the question, so I had to work a little magic of my own. Let&#8217;s go on a little journey, shall we?</p>
 
