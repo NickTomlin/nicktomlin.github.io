@@ -1,10 +1,8 @@
 ---
-layout: post
 title: Programmatically running npm scripts
 date: '2015-09-04'
 comments: true
 categories: npm node
-disqusId: /2015/09/04/programmatically-running-npm-scripts
 ---
 
 npm has become an essential part of my tool-chain, and I often use the `scripts` entry in lieu of build tools like Gulp or Grunt for small to medium sized projects. One issue that I've encountered is wanting to kick off tasks stored in the `scripts` without actually running `npm` on the shell. Googling did not lead to any easy answers, but the solution was readily apparent from the `npm-cli` [source](https://github.com/npm/npm/blob/master/bin/npm-cli.js#L69).

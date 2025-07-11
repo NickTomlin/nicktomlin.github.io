@@ -1,12 +1,10 @@
 ---
-layout: post
 title: Replacing Common Photoshop workflows with ImageMagick
 date: '2013-03-16'
 comments: true
 published: true
 external-url: null
 categories: null
-disqusId: /2013/03/16/replacing-common-photoshop-workflows-with-imagemagick
 ---
 Photoshop is a wonderful tool, but it tends to require mousing (even with shortcuts), likes to eat up as much RAM as possible, and doesn't play nice with bash scripts. Thats why I prefer [Image Magick](http://www.imagemagick.org/script/index.php): a quirky, insanely full-featured CLI image manipulation library. I'll run through some examples of using it do a few common tasks that I previously used photoshop for, such as:
 

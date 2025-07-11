@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Practical Binary
 date: '2019-07-29'
-disqusId: /2019/07/29/practical-binary
 ---
 
 I consider myself an experienced programmer, but my real-world experience is mostly in the full stack realm. I've never written a line of assembly; only written a tiny bit of `c`, and bit-shifting makes my head hurt.
@@ -126,7 +124,7 @@ Again, the computer just sees (and happily whirs through) a long sequence of bin
 When they say a "binary" file, what most people typically mean is something that is not a "plain" ASCII/UTF8 file like `hello.txt` or `example.csv`. If we `cat example.csv` or `hello.txt`, we'll get an accurate representation of the file's contents, but if we run `head example.pdf` we get something very different:
 
 
-```binary
+```plaintext
 %PDF-1.4
 %äüöß
 2 0 obj

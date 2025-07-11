@@ -6,7 +6,6 @@ comments: true
 published: false
 external-url: null
 categories: null
-disqusId: /2013/03/14/emotional-sanity-for-beginners
 ---
 
 I often find that assesement of my abilities varies from day to day, mostly depending on wether I am able to "figure thigns out." It is easy to get discouraged when the simplest (or seemingly simplest) things can take hours to solve. The constant flow of "best practices" and "50 best javscript techniques" etc. etc. further this by making me feel that I am not only stuck, but that I am actively drowning in my own ignorance and lack of skill.

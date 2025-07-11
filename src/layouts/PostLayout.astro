@@ -1,16 +1,14 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Date from '../components/Date.astro';
-import DisqusComments from '../components/DisqusComments.jsx';
 
 export interface Props {
   title: string;
   date: Date;
-  disqusId?: string;
   description?: string;
 }
 
-const { title, date, disqusId, description } = Astro.props;
+const { title, date, description } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -31,17 +29,6 @@ const { title, date, disqusId, description } = Astro.props;
             <a href="/posts" class="py-1 px-4 rounded-md bg-brand-primary text-white no-underline">
               More posts
             </a>
-          </div>
-          <div class="my-4">
-            <DisqusComments 
-              shortname="nick-tomlin"
-              config={{
-                locale: "en_US",
-                identifier: disqusId || title,
-                title: title
-              }}
-              client:load
-            />
           </div>
         </footer>
       </article>

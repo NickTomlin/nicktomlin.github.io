@@ -2,7 +2,6 @@
 layout: post
 title: The power of reflection
 date: '2019-09-05'
-disqusId: /2019/09/05/reflection
 ---
 
 Your are eyes closed, you feel the warmth of the sun work into your face, shoulders, and arms, the only sound is that of wave after wave of ocean water crashing against the sand near your feet. I don't know about you, but I've just described my worst nightmare. 

@@ -1,8 +1,6 @@
 ---
-layout: post
 title: VimL Functions
 date: '2017-07-12'
-disqusId: /2017/07/12/viml-functions
 ---
 
 I've started a slow descent into the madness that is VimL. One of the things that I've found to be initially confusing is how Vim deals with functions. This may be very obvious to some but It caused me enough head scratching to warrant recording some thoughts here.

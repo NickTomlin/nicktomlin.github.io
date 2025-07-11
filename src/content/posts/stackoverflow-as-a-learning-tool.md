@@ -1,12 +1,10 @@
 ---
-layout: post
 title: Using stackoverflow as a learning tool
 date: '2013-04-06'
 comments: true
 published: true
 external-url: null
 categories: null
-disqusId: /2013/04/06/stackoverflow-as-a-learning-tool
 ---
 I first experienced the magic of Google when I was trapped on the 2nd puzzle in [Myst](http://en.wikipedia.org/wiki/Myst): a few quick keyboard strokes and I had the solution to that damnable clock puzzle that thwarted me for hours. My nine year old self was astounded that someone out there had an answer to the exact question I typed in. The only thing that recaptures the magic for me is [StackOverflow](http://stackoverflow.com/).
 

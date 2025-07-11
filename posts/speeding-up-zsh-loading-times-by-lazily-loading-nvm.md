@@ -2,7 +2,6 @@
 layout: post
 title: Speeding up zsh loading times by lazily loading nvm
 date: '2018-03-10'
-disqusId: /2018/03/10/speeding-up-zsh-loading-times-by-lazily-loading-nvm
 ---
 
 A [friend of mine](https://twitter.com/lejeunerenard?lang=en) was doing some spring cleaning on his shell and it prompted me to go on my own journey.

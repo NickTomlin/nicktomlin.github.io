@@ -13,7 +13,6 @@
     "@types/react-dom": "^19.1.6",
     "astro": "^5.10.2",
     "clsx": "^2.1.1",
-    "disqus-react": "^1.1.5",
     "fast-glob": "^3.2.4",
     "luxon": "^1.28.1",
     "postcss": "^8.2.13",

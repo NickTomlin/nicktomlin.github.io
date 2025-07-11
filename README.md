@@ -37,7 +37,6 @@ title: "Post Title"
 date: 2024-01-01
 excerpt: "Optional excerpt"
 comments: true
-disqusId: "optional-custom-id"
 ---
 
 Post content here...

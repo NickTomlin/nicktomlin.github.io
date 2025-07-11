@@ -1,10 +1,8 @@
 ---
-layout: post
 title: SQL Goodies
 comments: true
 categories: 'sql, postgres'
 date: '2016-05-18'
-disqusId: /2016/05/18/sql-goodies
 ---
 
 I've recently been diving into SQL ([postgres](http://www.postgresql.org/) to be exact). Here are a few random tidbits that have helped me on my journey.

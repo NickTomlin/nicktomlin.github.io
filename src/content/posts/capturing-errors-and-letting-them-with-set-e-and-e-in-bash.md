@@ -1,8 +1,6 @@
 ---
-layout: post
 title: Capturing errors and letting them free with set -e and set +e in bash
 date: '2018-05-17'
-disqusId: /2018/05/17/capturing-errors-and-letting-them-with-set-e-and-e-in-bash
 ---
 
 TLDR: Use `set -e` to make the current shell exit if a command run within it exists unsuccessfully and `set +e` to disable the behavior

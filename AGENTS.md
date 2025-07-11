@@ -9,7 +9,6 @@ Personal blog for Nick Tomlin (Full Stack Engineer) built with Astro and deploye
 - **Content**: Markdown with frontmatter via Astro Content Collections
 - **Components**: Mix of Astro (.astro) and React (.jsx)
 - **Deployment**: Netlify (auto-deploy from main branch)
-- **Comments**: Disqus integration
 
 ## Project Structure
 ```
@@ -24,7 +23,7 @@ src/
 ## Content Management
 - **Posts**: `src/content/posts/*.md` with schema validation
 - **New posts**: `npm run post "Title"` (creates slugified filename)
-- **Frontmatter**: title, date, excerpt, comments (boolean), disqusId
+- **Frontmatter**: title, date, excerpt, comments (boolean)
 
 ## Key Configuration Files
 - `astro.config.mjs`: Site config, integrations (React, Tailwind, Sitemap)

@@ -6,7 +6,6 @@ comments: true
 published: false
 external-url: null
 categories: null
-disqusId: /2013/03/19/hacking-on-jquery
 ---
 
 Javascript is a beautiful language, and even though I am an apprentice programer, my favorite of the handful of languages I can code in.

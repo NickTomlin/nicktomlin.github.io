@@ -1,8 +1,6 @@
 ---
-layout: post
 title: JSX with Emmet Vim
 date: '2017-06-10'
-disqusId: /2017/06/10/jsx-with-emmet-vim
 ---
 
 > Apparently I'm very bad about writing blog posts; I'm going to try and do more bite sized "tactical" updates like this and see how it goes
