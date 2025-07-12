@@ -2,80 +2,71 @@
 
 /* https://github.com/vercel/next.js/issues/13488#issuecomment-688253373 */
 body {
-    border-top: 2px solid var(--brand-primary);
+  border-top: 2px solid var(--brand-primary);
 }
 
 .my-face {
-    min-width: 200px;
-    @apply rounded-full !important;
-    @apply border-solid !important;
-    @apply border-4 !important;
-    @apply border-brand-secondary !important;
-    @apply max-h-64;
-    @apply mb-4;
-    @apply lg:max-h-80;
-    @apply lg:mr-10;
+  min-width: 200px;
+  @apply rounded-full !important;
+  @apply border-solid !important;
+  @apply border-4 !important;
+  @apply border-brand-secondary !important;
+  @apply max-h-64;
+  @apply mb-4;
+  @apply lg:max-h-80;
+  @apply lg:mr-10;
 }
 
 .my-name {
-    @apply font-title;
-    @apply font-semibold;
+  @apply font-title;
+  @apply font-semibold;
 }
 
 .wrapper {
-    @apply container;
+  @apply container;
 }
 
 .page-content {
-    @apply pt-0;
+  @apply pt-2;
 }
 
 .header-nav {
-    a:last-child::after {
-        content: none;
-    }
+  a:last-child::after {
+    content: none;
+  }
 
-    a::after {
-        content: "/";
-        color: var(--brand-secondary);
-        display: inline-block;
-        margin-left: 1rem;
-    }
+  a::after {
+    content: "/";
+    color: var(--brand-secondary);
+    display: inline-block;
+    margin-left: 1rem;
+  }
 }
 
 .decorated-heading {
-    position: relative;
-    @apply font-title;
-    &::before {
-         display: inline-block;
-         content: "";
-         height: 8px;
-         width: .5rem;
-         background-color: var(--brand-secondary);
-         border-radius: 9999px;
-         top: .8rem;
-         left: -.85rem;
-         position: absolute;
-     }
+  position: relative;
+  @apply font-title;
+  &::before {
+    display: inline-block;
+    content: "";
+    height: 8px;
+    width: 0.5rem;
+    background-color: var(--brand-secondary);
+    border-radius: 9999px;
+    top: 0.8rem;
+    left: -0.85rem;
+    position: absolute;
+  }
 }
-
 
 /* line before */
 .heading {
-    &::before {
-         color: red;
-     }
+  &::before {
+    color: red;
+  }
 }
 
-
-/*.section-heading {*/
-/*    @apply text-3xl;*/
-/*    @apply font-semibold;*/
-/*}*/
-
-/*.top-nav-item {*/
-/*    &:after {*/
-/*        display: inline-block;*/
-/*        content: "/";*/
-/*    }*/
-/*}*/
+.section-heading {
+  @apply text-3xl;
+  @apply font-semibold;
+}
