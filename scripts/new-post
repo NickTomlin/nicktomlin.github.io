@@ -1,33 +1,32 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
 
-const luxon = require('luxon')
-const path = require('path')
-const slugify = require('@sindresorhus/slugify')
-const fs = require('fs')
-const mkdirp = require('mkdirp')
+import path from 'path'
+import slugify from '@sindresorhus/slugify'
+import fs from 'fs'
+import { fileURLToPath } from 'url'
 
-function main (title) {
-  const date = luxon.DateTime.local()
-  const dateString = date.toISODate()
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-  const starterText = `
----
+function main(title) {
+  const date = new Date()
+  const dateString = date.toISOString().split('T')[0]
+
+  const starterText = `---
 title: "${title}"
 date: ${dateString}
----
-`.trim()
+---`.trim()
 
   const fileName = `${slugify(title)}.md`
-  const {year, month, day} = date
-  const dir = path.join(__dirname, '../posts')
-  mkdirp.sync(dir)
+  const dir = path.join(__dirname, '../src/content/posts')
+  fs.mkdirSync(dir, { recursive: true })
   const filePath = path.join(dir, fileName)
   fs.writeFileSync(filePath, starterText)
   console.log(`✅ Wrote '${title}' to ${filePath} ✅`)
 }
 
-
 const title = process.argv.slice(2)
-if (!/^\S+$/.test(title)) { console.error(`Invalid title supplied: ${title}`) }
+if (!/^\S+$/.test(title)) { 
+  console.error(`Invalid title supplied: ${title}`) 
+}
 
 main(title.join(' ').trim())
