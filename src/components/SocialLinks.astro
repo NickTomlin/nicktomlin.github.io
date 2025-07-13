@@ -1,0 +1,9 @@
+---
+import GithubIcon from './icons/GithubIcon.astro';
+import StackoverflowIcon from './icons/StackoverflowIcon.astro';
+import InIcon from './icons/InIcon.astro';
+import { SITE_CONFIG } from '../consts';
+---
+<GithubIcon username={SITE_CONFIG.github_username} />
+<StackoverflowIcon username={SITE_CONFIG.stackoverflow_username}/>
+<InIcon username={SITE_CONFIG.linkedIn_username} />

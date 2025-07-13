@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import PostLayout from '../../layouts/PostLayout.astro';
+import Date from '../../components/post/Date.astro';
+import Disqus from '../../components/Disqus.astro';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+<PostLayout title={entry.data.title}>
+  <article itemScope itemType="http://schema.org/BlogPosting">
+    <header class="my-4">
+      <h1 class="lead text-5xl mb-3" itemProp="name headline">{entry.data.title}</h1>
+      <span>
+        <Date dateString={entry.data.date} itemProp="datePublished"/>
+      </span>
+    </header>
+    <div class="post-content prose lg:prose-xl" itemProp="articleBody">
+      <Content />
+    </div>
+    <footer class="my-10">
+      <div>
+        <a href="/posts">
+          <button class="py-1 px-4 rounded-md bg-brand-primary text-white no-underline">
+            More posts
+          </button>
+        </a>
+      </div>
+      {entry.data.comments !== false &&
+        <div class="my-4">
+          <Disqus client:visible title={entry.data.title} id={entry.slug} />
+        </div>
+      }
+    </footer>
+  </article>
+</PostLayout>

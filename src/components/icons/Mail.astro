@@ -1,0 +1,7 @@
+---
+import Icon from './Icon.astro';
+import { SITE_CONFIG } from '../../consts';
+---
+<Icon href={`mailto:${SITE_CONFIG.email}`} title={"Email"}>
+  <img src={"/images/gmail.svg"} class={"h-8 w-8"}/>
+</Icon>

@@ -1,0 +1,7 @@
+---
+import Icon from './Icon.astro';
+const { username } = Astro.props;
+---
+<Icon href={`https://stackoverflow.com/users/${username}`} title={"Stack Overflow"}>
+  <img src={"/images/stackoverflow.svg"} class={"h-8 w-8"}/>
+</Icon>

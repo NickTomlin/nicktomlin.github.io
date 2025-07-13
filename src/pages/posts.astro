@@ -1,0 +1,18 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+import PostList from '../components/post/PostList.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+<PageLayout>
+  <h1 class="lead text-5xl mb-3">Posts</h1>
+  <div>
+    <PostList
+      postTitleClassname="text-2xl"
+      posts={posts.map(p => ({...p.data, href: `/posts/${p.slug}`}))}
+    />
+  </div>
+</PageLayout>

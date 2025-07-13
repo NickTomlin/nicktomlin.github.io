@@ -1,0 +1,22 @@
+---
+import { SITE_CONFIG } from '../consts';
+
+function HeaderLink({ href, children }) {
+  return <a href={href} class="hover:underline hover:text-brand-secondary transition-all">
+    {children}
+  </a>
+}
+---
+<header class="relative my-4 min-h-56">
+  <div class="wrapper flex items-center justify-between site-header">
+    <div class="mt-2">
+      <a href="/"><img class="max-h-10" src="/images/nt-logo.svg" alt={SITE_CONFIG.title}/></a>
+    </div>
+
+    <nav class="header-nav space-x-6 ml-8">
+      <HeaderLink href="/">Home</HeaderLink>
+      <HeaderLink href="/about">About</HeaderLink>
+      <HeaderLink href="/posts">Posts</HeaderLink>
+    </nav>
+  </div>
+</header>

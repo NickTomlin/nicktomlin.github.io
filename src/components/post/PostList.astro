@@ -1,0 +1,21 @@
+---
+import Date from './Date.astro';
+import clsx from 'clsx';
+const { posts, className, postTitleClassname } = Astro.props;
+---
+<section class={className}>
+  {posts.map(post => (
+    <article class="my-6">
+      <header>
+        <p class={clsx("text-2xl", postTitleClassname)}>
+          <a class="text-lg" href={post.href}>{post.title}</a>
+        </p>
+      </header>
+      <footer>
+        <p class="text-lg">
+          <Date dateString={post.date} />
+        </p>
+      </footer>
+    </article>
+  ))}
+</section>

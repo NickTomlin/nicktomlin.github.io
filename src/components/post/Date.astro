@@ -1,0 +1,7 @@
+---
+import { DateTime } from 'luxon';
+const { dateString } = Astro.props;
+const sanitized = (dateString || '').replace(/\s/, 'T');
+const formatted = DateTime.fromISO(sanitized).toLocaleString(DateTime.DATE_FULL);
+---
+<time dateTime={dateString}>{formatted}</time>
