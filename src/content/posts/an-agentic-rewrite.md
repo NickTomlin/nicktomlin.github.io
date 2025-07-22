@@ -3,7 +3,7 @@ title: "An agentic rewrite"
 date: 2025-07-21
 ---
 
-It's that time when I take a break from writing 1-2 blog posts per year to rewrite my site in a new blogging framework :)
+It's that time when I take a break from writing 1-2 blog posts per year to rewrite my site with a new framework :)
 
 I've grown increasingly frustrated by my choice of [`next.js`](https://nextjs.org/) for my blog ( [whomp whomp](https://nick-tomlin.com/posts/migrating-from-jekyll-to-next-js-initial-thoughts/)) because it was both more complicated and less functional to maintain than the original Jekyll blog it had replaced (technology!). This time, instead of rewriting by hand, I wanted to do a Gen-Ai bake-off between [`claude code`](https://www.anthropic.com/claude-code) and the [`gemini` cli](https://github.com/google-gemini/gemini-cli).
 
