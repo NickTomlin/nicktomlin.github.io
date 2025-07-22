@@ -18,7 +18,7 @@ Change the backing framework for my site without:
 
 It worked! Here are some high level takeaways:
 
-**Framework adoption will be driven by how well agents work with them**. Both agents could not get my first pick framework to build even with multiple prompts; I ended up choosing another framework that suited them better. I can see a world where this is table stakes for adoption, and users will just drop one framework if an agent can't work with it.
+**Framework adoption will be driven by how well agents work with them**. Both agents could not get my first pick framework to build. After multiple attempts to nudge them, I ended up choosing another framework that suited them better. I can see a world where this is table stakes for adoption, and users will just drop one framework if an agent can't work with it.
 
 **`claude` code is the reigning champ; `gemini` is playing catchup**. Not really news, but I continue to be impressed with how `claude` continues to balance simplicity with excellence in understanding and producing code. I think a "brownfield" migration like mine with built in constraints is where this is particularly evident.
 
