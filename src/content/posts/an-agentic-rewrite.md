@@ -5,7 +5,7 @@ date: 2025-07-21
 
 It's that time when I take a break from writing 1-2 blog posts per year to rewrite my site with a new framework :)
 
-I've grown increasingly frustrated by my choice of [`next.js`](https://nextjs.org/) for my blog ( [whomp whomp](https://nick-tomlin.com/posts/migrating-from-jekyll-to-next-js-initial-thoughts/)) because it was both more complicated and less functional to maintain than the original Jekyll blog it had replaced (technology!). This time, instead of rewriting by hand, I wanted to do a Gen-Ai bake-off between [`Claude code`](https://www.anthropic.com/claude-code) and the [`Gemini` cli](https://github.com/google-gemini/gemini-cli).
+I've grown increasingly frustrated by my choice of [`next.js`](https://nextjs.org/) for my blog ( [whomp whomp](https://nick-tomlin.com/posts/migrating-from-jekyll-to-next-js-initial-thoughts/)) because it was both more complicated and less functional to maintain than the original Jekyll blog it had replaced (technology!). This time, instead of rewriting by hand, I wanted to do a Gen-Ai bake-off between [`claude code`](https://www.anthropic.com/claude-code) and the [`gemini` cli](https://github.com/google-gemini/gemini-cli).
 
 ## 🎯 The challenge
 
@@ -20,9 +20,9 @@ It worked! Here are some high-level takeaways:
 
 **Framework adoption will be driven by how well agents work with them**. Neither agent could get my first pick framework to build. After multiple attempts to nudge them, I ended up choosing another framework that suited them better. I can see a world where this is table stakes for adoption, and users will just drop one framework if an agent can't work with it.
 
-**`claude` code is the reigning champ; `gemini` is playing catchup**. Not really news, but I continue to be impressed with how `Claude` continues to balance simplicity with excellence in understanding and producing code. I think a "brownfield" migration like mine with built in constraints is where this is particularly evident.
+**`claude` code is the reigning champ; `gemini` is playing catchup**. Not really news, but I continue to be impressed with how `claude` continues to balance simplicity with excellence in understanding and producing code. I think a "brownfield" migration like mine with built in constraints is where this is particularly evident.
 
-**The easy button still needs work**. This was one of the most productive agentic sessions I've had, but I still spent a lot of time futzing with prompts and design docs. There was also a fair amount of manually nudging the agents to fix things.
+**The easy button still needs work**. Using agents helped me to solve a real problem, but It still required lots of prompting and manually nudging the agents to fix things.
 
 # The story
 
@@ -38,11 +38,11 @@ After this, I asked the agents to recommend an option and ended up choosing [Ast
 
 I asked each agent to create a plan on how to do the migration, and made some minor edits to the `.md` file, then had them execute it. Switching to `astro` allowed me to mostly hit `yes`, barring some wacky loops where `claude` couldn't figure out why dates weren't displaying correctly and missed some `yaml` front-matter.
 
-`claude` was able to immediately migrate my site into an astro compatible format, fix the inevitable `build` issues, produce a rendered (if slightly buggy) site. Claude struggled with translating post dates to display dates, and there were some visual inconsistencies that were the result of tailwind version upgrades. After some nudging and hooking it up to the playwright MCP, it was able to resolve formatting and styling issues without manually editing code.
+`claude` was able to immediately migrate my site into an astro compatible format, fix the inevitable `build` issues, and produce a rendered (if slightly buggy) site. Claude struggled with translating post dates to display dates, and there were some visual inconsistencies that were the result of tailwind version upgrades. After some nudging and hooking it up to the playwright MCP, it was able to resolve formatting and styling issues without manually editing code.
 
-`Gemini` was able to get most of the project in the right places, but spun on some `css` issues with `tailwind` that it couldn't get out of. I had one frustrating exchange where it tried to tell me that `tailwind` was a server-only technology and could not use `css` variables. I respect the non-sycophantic response of "this is not possible", because I had a branch where `claude` had generated working code using css variables automatically. I gave up on Gemini here, since I didn't care to spend the time fighting with it. I may continue down this path in the future to see how I can unstick it.
+`gemini` was able to get most of the project in the right places, but spun on some `css` issues with `tailwind` that it couldn't get out of. I had one frustrating exchange where it tried to tell me that `tailwind` was a server-only technology and could not use `css` variables. I respect the non-sycophantic response of "this is not possible", but it was a bit comic in this case because `claude` had generated working code using css variables automatically. I gave up on Gemini here, since I didn't care to spend the time fighting with it. I may continue down this path in the future to see how I can unstick it.
 
-Overall, I was quite impressed by how both models performed, even though Gemini failed to produce a working site.
+Overall, I was quite impressed by how both models performed, even though `gemini` failed to produce a working site.
 
 ### The future of frameworks
 
