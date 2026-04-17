@@ -43,6 +43,6 @@ Even if I could get a refund of the time I've invested and pour it into some LLM
 
 I also wouldn't even change my approach of manually typing things out. My old fashioned lizard brain learns best the old, hard, and crufty way. The struggle of breaking down a problem bit by bit gives me a much richer perspective, even if I'm typically sitting comfortably behind an agent. Sometimes you just need to move slow, as counter cultural as that may be.
 
-I _would_ lean on LLMs more! I started in the second half of the book where `Claude` helped me understand some of the `C` fundamentals I'd missed; it also helped clarify or colour hard to grok sections. I'd also create more toy languages to play around with concepts as I went, and get a guided tour of codebases like [lua](https://github.com/lua/lua).
+I _would_ lean on LLMs more! At the end of the book, I started asking  `Claude` to help me understand some of the `C` fundamentals I'd missed; it also helped clarify or colour hard to grok sections. I'd also create more toy languages to play around with concepts as I went, and get a guided tour of codebases like [lua](https://github.com/lua/lua).
 
 This mix of "old fashioned" and "modern" feels like the pragmatic balance for the present. Given the rapid pace of evolution in this space, it's anyone's guess whether that will hold true in the coming weeks or months.
