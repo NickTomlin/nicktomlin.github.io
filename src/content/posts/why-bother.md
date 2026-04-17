@@ -11,7 +11,7 @@ With that little celebration out of the way, let's ask the natural question in t
 
 ## The modern approach
 
-I see increasing industry movement towards the idea that **Code is a low level, increasingly insignificant, [abstraction](https://martinfowler.com/articles/2025-nature-abstraction.html))**. LLMs can easily churn out code (including [compilers](https://www.anthropic.com/engineering/building-c-compiler)). Indeed, Claude created a [working bytecode VM](https://github.com/NickTomlin/robot-lox) in the time it took me to complete the first chapter of the book by hand. 
+I see increasing industry movement towards the idea that **Code is a low level, increasingly insignificant, [abstraction](https://martinfowler.com/articles/2025-nature-abstraction.html))**. LLMs can easily churn out code (including [compilers](https://www.anthropic.com/engineering/building-c-compiler). Indeed, Claude created a [working bytecode VM](https://github.com/NickTomlin/robot-lox) in the time it took me to complete the first chapter of the book by hand. 
 
 The dream seems to be that we move to 'spec' or ['harness' engineering](https://openai.com/index/harness-engineering/) where humans focus on requirements and evaluation and machines take care of the details, just like most of us no longer write assembly.
 
